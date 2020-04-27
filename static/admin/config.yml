@@ -1,64 +1,64 @@
 backend:
-    name: git-gateway
-media_folder: static/images/uploads
-public_folder: /images/uploads
-site_url: https://mystifying-aryabhata-15ead0.netlify.app/
+    name: "git-gateway"
+media_folder: "static/images/uploads"
+public_folder: "/images/uploads"
+site_url: "https://mystifying-aryabhata-15ead0.netlify.app/"
 collections:
-    - name: categories
-      label: Categorie
-      label_singular: Categoria
-      folder: content/categories
-      create: true
+    - name: "categories"
+      label: "Categorie"
+      label_singular: "Categoria"
+      folder: "content/categories"
+      create: "true"
       editor:
-          preview: false
+          preview: "false"
       fields:
-          - label: Nome
-            name: title
-            widget: string
-          - label: Immagine
-            name: image
-            widget: image
-          - label: Descrizione
-            name: description
-            widget: text
-    - name: attributes
-      label: Attributi
-      label_singular: Attributo
-      folder: content/attributes
-      create: true
+          - label: "Nome"
+            name: "title"
+            widget: "string"
+          - label: "Immagine"
+            name: "image"
+            widget: "image"
+          - label: "Descrizione"
+            name: "description"
+            widget: "text"
+    - name: "attributes"
+      label: "Attributi"
+      label_singular: "Attributo"
+      folder: "content/attributes"
+      create: "true"
       editor:
-          preview: false
+          preview: "false"
       fields:
-          - label: Nome
-            name: title
-            widget: string
-          - label: Opzioni
-            name: options
-            widget: list
-    - name: products
-      label: Prodotti
-      label_singular: Prodotto
-      folder: content/products
-      create: true
+          - label: "Nome"
+            name: "title"
+            widget: "string"
+          - label: "Opzioni"
+            name: "options"
+            widget: "list"
+    - name: "products"
+      label: "Prodotti"
+      label_singular: "Prodotto"
+      folder: "content/products"
+      create: "true"
       editor:
-          preview: false
+          preview: "false"
       fields:
-          - label: Nome
-            name: title
-            widget: string
-          - label: Immagine/i
-            name: image
-            widget: image
-          - label: Descrizione
-            name: description
-            widget: text
-          - label: Varianti
-            name: variants
-            widget: list
+          - label: "Nome"
+            name: "title"
+            widget: "string"
+          - label: "Immagine/i"
+            name: "image"
+            widget: "image"
+          - label: "Descrizione"
+            name: "description"
+            widget: "text"
+          - label: "Varianti"
+            name: "variants"
+            widget: "list"
             fields:
-                - label: Nome variante
-                  name: variantName
-                  widget: string
-                - label: Scelte variante
-                  name: variantChoice
-                  widget: list
+                - label: "Nome variante"
+                  name: "variantName"
+                  widget: "string"
+                - label: "Scelte variante"
+                  name: "variantChoice"
+                  widget: "list"
