@@ -8,9 +8,9 @@ collections:
       label: "Categorie"
       label_singular: "Categoria"
       folder: "content/categories"
-      create: "true"
+      create: true
       editor:
-          preview: "false"
+          preview: false
       fields:
           - label: "Nome"
             name: "title"
@@ -25,9 +25,9 @@ collections:
       label: "Attributi"
       label_singular: "Attributo"
       folder: "content/attributes"
-      create: "true"
+      create: true
       editor:
-          preview: "false"
+          preview: false
       fields:
           - label: "Nome"
             name: "title"
@@ -39,9 +39,9 @@ collections:
       label: "Prodotti"
       label_singular: "Prodotto"
       folder: "content/products"
-      create: "true"
+      create: true
       editor:
-          preview: "false"
+          preview: false
       fields:
           - label: "Nome"
             name: "title"
