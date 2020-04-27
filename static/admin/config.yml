@@ -1,6 +1,6 @@
 backend:
-    name: git-gateway
-    branch: master
+    name: github
+    repo: morbegnoprint/shop
 media_folder: static/images/uploads
 public_folder: /images/uploads
 collections:
