@@ -1,18 +1,65 @@
 backend:
     name: git-gateway
     branch: master
-media_folder: static/img
-public_folder: /img
+locale: it
+media_folder: static/images/uploads
+site_url: https://shop.morbegnoprint.it
 collections:
-    - name: "blog"
-      label: "Blog"
-      folder: "content/blog"
+    - name: categories
+      label: Categorie
+      label_singular: Categoria
+      folder: content/categories
       create: true
-      slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
       editor:
           preview: false
       fields:
-          - { label: "Title", name: "title", widget: "string" }
-          - { label: "Publish Date", name: "date", widget: "datetime" }
-          - { label: "Description", name: "description", widget: "string" }
-          - { label: "Body", name: "body", widget: "markdown" }
+          - label: Nome
+            name: name
+            widget: string
+          - label: Immagine
+            name: image
+            widget: image
+          - label: Descrizione
+            name: description
+            widget: text
+    - name: attributes
+      label: Attributi
+      label_singular: Attributo
+      folder: content/attributes
+      create: true
+      editor:
+          preview: false
+      fields:
+          - label: Nome
+            name: name,
+            widget: string
+          - label: Opzioni
+            name: options
+            widget: list
+    - name: products
+      label: Prodotti
+      label_singular: Prodotto
+      folder: content/products
+      create: true
+      editor:
+          preview: false
+      fields:
+          - label: Nome
+            name: name,
+            widget: string
+          - label: Immagine/i
+            name: image
+            widget: image
+          - label: Descrizione
+            name: description
+            widget: text
+          - label: Varianti
+            name: variants
+            widget: list
+            fields:
+                - label: Nome variante
+                  name: variantName 
+                  widget: string
+                - label: Scelte variante
+                  name: variantChoice
+                  widget: list
