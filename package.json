@@ -34,7 +34,6 @@
         "extends": "react-app"
     },
     "devDependencies": {
-        "netlify-lambda": "^1.6.3",
         "prettier": "^1.19.1",
         "rimraf": "^3.0.0"
     },
@@ -43,7 +42,7 @@
     ],
     "license": "MIT",
     "scripts": {
-        "build": "gatsby build && rimraf built-lambda && netlify-lambda build lambda",
+        "build": "gatsby build",
         "develop": "gatsby develop",
         "format": "prettier --write \"**/*.{js,jsx,json,md}\"",
         "start": "yarn develop",
