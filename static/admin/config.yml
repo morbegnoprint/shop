@@ -5,7 +5,6 @@ public_folder: /images/uploads
 site_url: https://mystifying-aryabhata-15ead0.netlify.app/
 collections:
     - name: categories
-      identifier_field: name
       label: Categorie
       label_singular: Categoria
       folder: content/categories
@@ -14,7 +13,7 @@ collections:
           preview: false
       fields:
           - label: Nome
-            name: name
+            name: title
             widget: string
           - label: Immagine
             name: image
@@ -23,7 +22,6 @@ collections:
             name: description
             widget: text
     - name: attributes
-      identifier_field: name
       label: Attributi
       label_singular: Attributo
       folder: content/attributes
@@ -32,13 +30,12 @@ collections:
           preview: false
       fields:
           - label: Nome
-            name: name
+            name: title
             widget: string
           - label: Opzioni
             name: options
             widget: list
     - name: products
-      identifier_field: name
       label: Prodotti
       label_singular: Prodotto
       folder: content/products
@@ -47,7 +44,7 @@ collections:
           preview: false
       fields:
           - label: Nome
-            name: name
+            name: title
             widget: string
           - label: Immagine/i
             name: image
