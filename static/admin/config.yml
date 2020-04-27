@@ -1,9 +1,7 @@
 backend:
     name: git-gateway
     branch: master
-locale: it
 media_folder: static/images/uploads
-site_url: https://shop.morbegnoprint.it
 collections:
     - name: categories
       label: Categorie
@@ -58,7 +56,7 @@ collections:
             widget: list
             fields:
                 - label: Nome variante
-                  name: variantName 
+                  name: variantName
                   widget: string
                 - label: Scelte variante
                   name: variantChoice
