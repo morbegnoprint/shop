@@ -2,7 +2,6 @@ backend:
     name: "git-gateway"
 media_folder: "static/images/uploads"
 public_folder: "/images/uploads"
-site_url: "https://mystifying-aryabhata-15ead0.netlify.app/"
 collections:
     - name: "categories"
       label: "Categorie"
