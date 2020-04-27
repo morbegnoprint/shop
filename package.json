@@ -40,7 +40,7 @@
     "keywords": [
         "gatsby"
     ],
-    "license": "MIT",
+    "license": " GPL-3.0",
     "scripts": {
         "build": "gatsby build",
         "develop": "gatsby develop",
