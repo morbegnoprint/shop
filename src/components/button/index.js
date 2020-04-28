@@ -23,5 +23,6 @@ export const Button = styled.button`
     :disabled {
         background: #e0e0e0;
         color: #757575;
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.19), 0 3px 3px rgba(0, 0, 0, 0.23);
     }
 `;
