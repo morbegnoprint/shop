@@ -6,6 +6,8 @@ import { Section } from "../../components/section";
 import { Flex, Box } from "reflexbox";
 import { Image } from "./styled";
 import { Button } from "../../components/button";
+import { Select } from "../../components/select";
+import { Seo } from "../../components/seo";
 
 export const productQuery = graphql`
     query Product($id: String!) {
@@ -20,6 +22,10 @@ export const productQuery = graphql`
                     }
                 }
                 description
+                attributes {
+                    name
+                    options
+                }
                 price
                 currency
             }
@@ -29,17 +35,19 @@ export const productQuery = graphql`
 
 const Product = ({ data }) => {
     const {
-        markdownRemark: { frontmatter }
+        markdownRemark: { frontmatter },
     } = data;
+
     return (
         <Layout>
+            <Seo description={frontmatter.description} />
             <Section>
                 <Flex width="100%" mx={-4}>
                     <Box width="50%" px={4}>
                         <Image
                             fluid={{
                                 ...frontmatter.image.childImageSharp.fluid,
-                                aspectRatio: 3 / 4
+                                aspectRatio: 3 / 4,
                             }}
                         />
                     </Box>
@@ -58,6 +66,27 @@ const Product = ({ data }) => {
                                         <h3>Descrizione</h3>
                                     </Box>
                                     <Box mb={4}>{frontmatter.description}</Box>
+                                    {frontmatter.attributes.map((attribute) => (
+                                        <Flex
+                                            key={attribute.name}
+                                            flexDirection="column"
+                                        >
+                                            <Box mb={-2}>
+                                                <h3>{attribute.name}</h3>
+                                            </Box>
+                                            <Box mb={4}>
+                                                <Select
+                                                    options={attribute.options.map(
+                                                        (option, index) => ({
+                                                            label: option,
+                                                            value: option,
+                                                            index,
+                                                        })
+                                                    )}
+                                                />
+                                            </Box>
+                                        </Flex>
+                                    ))}
                                     <Box
                                         color="#f07d02"
                                         fontSize={36}
@@ -80,7 +109,7 @@ const Product = ({ data }) => {
 };
 
 Product.propTypes = {
-    data: PropTypes.object.isRequired
+    data: PropTypes.object.isRequired,
 };
 
 export default Product;
