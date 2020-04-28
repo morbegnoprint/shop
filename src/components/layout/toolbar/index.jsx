@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Container, StyledMobileMenuIcon, AnimatedMobileMenu } from "./styled";
-import { useStaticQuery, graphql } from "gatsby";
+import { useStaticQuery, graphql, Link } from "gatsby";
 import Image from "gatsby-image";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
 import { Flex, Box } from "reflexbox";
@@ -36,10 +36,12 @@ export const Toolbar = () => {
             />
             <Container alignItems="center" justifyContent="space-between">
                 <Box>
-                    <Image
-                        fixed={logoImage.childImageSharp.fixed}
-                        alt="Mini logo"
-                    />
+                    <Link to="/">
+                        <Image
+                            fixed={logoImage.childImageSharp.fixed}
+                            alt="Mini logo"
+                        />
+                    </Link>
                 </Box>
                 <Flex display={["flex", "none"]}>
                     <Box>

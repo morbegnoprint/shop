@@ -13,7 +13,7 @@ collections:
       identifier_field: "name"
       label: "Categories"
       label_singular: "Category"
-      folder: "content/categories"
+      folder: "src/pages/categories"
       create: true
       editor:
           preview: false
@@ -27,6 +27,12 @@ collections:
           - label: "Description"
             name: "description"
             widget: "text"
+          - name: "type"
+            widget: "hidden"
+            defaultValue: "category"
+          - name: "collection"
+            widget: "hidden"
+            defaultValue: "categories"
     - name: "attributes"
       identifier_field: "name"
       label: "Attributes"
@@ -42,11 +48,17 @@ collections:
           - label: "Options"
             name: "options"
             widget: "list"
+          - name: "type"
+            widget: "hidden"
+            defaultValue: "hidden"
+          - name: "collection"
+            widget: "hidden"
+            defaultValue: "attributes"
     - name: "products"
       identifier_field: "name"
       label: "Products"
       label_singular: "Product"
-      folder: "content/products"
+      folder: "src/pages/products"
       create: true
       editor:
           preview: false
@@ -64,5 +76,26 @@ collections:
             name: "attributes"
             widget: "relation"
             collection: "attributes"
-            searchFields: ["title"]
-            valueField: "options"
+            searchFields: ["name"]
+            valueField: "name"
+          - label: "Category"
+            name: "category"
+            widget: "relation"
+            collection: "categories"
+            searchFields: ["name"]
+            valueField: "id"
+          - name: "type"
+            widget: "hidden"
+            defaultValue: "product"
+          - name: "collection"
+            widget: "hidden"
+            defaultValue: "products"
+          - name: "price"
+            widget: "number"
+            min: 0
+            step: 0.01
+          - name: "currency"
+            widget: "select"
+            options:
+                - label: "Euro"
+                  value: €

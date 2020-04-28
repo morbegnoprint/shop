@@ -2,9 +2,17 @@ import React from "react";
 import { Seo } from "../components/seo";
 import { Layout } from "../components/layout";
 import { useStaticQuery, graphql } from "gatsby";
+import { Categories } from "../components/categories";
+import { Products } from "../components/products";
 
 const Index = () => {
-    const { favicon16, favicon32, favicon64 } = useStaticQuery(
+    const {
+        favicon16,
+        favicon32,
+        favicon64,
+        products,
+        categories
+    } = useStaticQuery(
         graphql`
             query {
                 favicon16: file(relativePath: { eq: "favicon/16.png" }) {
@@ -25,6 +33,46 @@ const Index = () => {
                     childImageSharp {
                         fixed(height: 64) {
                             ...GatsbyImageSharpFixed
+                        }
+                    }
+                }
+                products: allMarkdownRemark(
+                    filter: { frontmatter: { type: { eq: "product" } } }
+                ) {
+                    edges {
+                        node {
+                            id
+                            frontmatter {
+                                name
+                                image {
+                                    childImageSharp {
+                                        fluid(quality: 90) {
+                                            ...GatsbyImageSharpFluid
+                                        }
+                                    }
+                                }
+                                price
+                                currency
+                            }
+                        }
+                    }
+                }
+                categories: allMarkdownRemark(
+                    filter: { frontmatter: { type: { eq: "category" } } }
+                ) {
+                    edges {
+                        node {
+                            id
+                            frontmatter {
+                                name
+                                image {
+                                    childImageSharp {
+                                        fluid(quality: 90) {
+                                            ...GatsbyImageSharpFluid
+                                        }
+                                    }
+                                }
+                            }
                         }
                     }
                 }
@@ -60,7 +108,20 @@ const Index = () => {
                     }
                 ]}
             />
-            Hello world!
+            <Categories
+                categories={categories.edges.reduce((categories, edge) => {
+                    const { node } = edge;
+                    categories.push({ ...node.frontmatter, id: node.id });
+                    return categories;
+                }, [])}
+            />
+            <Products
+                products={products.edges.reduce((products, edge) => {
+                    const { node } = edge;
+                    products.push({ ...node.frontmatter, id: node.id });
+                    return products;
+                }, [])}
+            />
         </Layout>
     );
 };

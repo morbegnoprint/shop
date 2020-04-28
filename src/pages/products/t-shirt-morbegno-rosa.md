@@ -5,4 +5,9 @@ description: |-
   Porta Morbegno e la Valtellina sempre con te grazie a questa t-shirt.
   Colore rosa, 100% cotone.
 attributes: '["S","M","L"]'
+type: product
+price: 10
+currency: €
+collection: products
+category: T-shirt
 ---

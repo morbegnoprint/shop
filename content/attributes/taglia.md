@@ -5,4 +5,6 @@ options:
   - S
   - M
   - L
+type: attribute
+collection: attributes
 ---
