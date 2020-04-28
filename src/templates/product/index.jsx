@@ -22,7 +22,6 @@ export const productQuery = graphql`
                 description
                 price
                 currency
-                attributes
             }
         }
     }
@@ -32,7 +31,6 @@ const Product = ({ data }) => {
     const {
         markdownRemark: { frontmatter }
     } = data;
-    console.log(frontmatter);
     return (
         <Layout>
             <Section>
