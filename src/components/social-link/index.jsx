@@ -4,24 +4,25 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFacebook, faInstagram } from "@fortawesome/free-brands-svg-icons";
 import { Link, RootFlex } from "./styled";
 import { Box } from "reflexbox";
+import { UndecoratedLink } from "../undecorated-link";
 
 const socialInfo = {
     facebook: {
         icon: faFacebook,
         url: "https://www.facebook.com/millemotivi.it/",
-        name: "Facebook"
+        name: "Facebook",
     },
     instagram: {
         icon: faInstagram,
         url: "https://instagram.com/morbegno_millemotivi?igshid=c4q7ewup72w2",
-        name: "Instagram"
-    }
+        name: "Instagram",
+    },
 };
 
 export const SocialLink = ({ type }) => {
     const socialSpecificInfo = socialInfo[type];
     return (
-        <Link
+        <UndecoratedLink
             href={socialSpecificInfo.url}
             target="_blank"
             rel="noopener noreferrer"
@@ -32,14 +33,14 @@ export const SocialLink = ({ type }) => {
                 </Box>
                 <Box>{socialSpecificInfo.name}</Box>
             </RootFlex>
-        </Link>
+        </UndecoratedLink>
     );
 };
 
 SocialLink.propTypes = {
-    type: PropTypes.oneOf(["facebook", "instagram"])
+    type: PropTypes.oneOf(["facebook", "instagram"]),
 };
 
 SocialLink.defaultProps = {
-    type: "light"
+    type: "light",
 };

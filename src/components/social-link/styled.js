@@ -7,7 +7,7 @@ export const Link = styled.a`
 
 export const RootFlex = styled(Flex)`
     padding: 8px 16px;
-    border-radius: 16x;
+    border-radius: 16px;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
     color: #fff;
     background: ${props => {
