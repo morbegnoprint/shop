@@ -73,12 +73,10 @@ collections:
             name: "description"
             widget: "text"
           - label: "Attributes"
-            name: "attributes"
-            widget: "list"
-            fields:
-                - widget: "full-relation"
-                  collection: "attributes"
-                  searchFields: ["name"]
+            widget: "full-relation"
+            collection: "attributes"
+            searchFields: ["name"]
+            multiple: true
           - label: "Category"
             name: "category"
             widget: "relation"
