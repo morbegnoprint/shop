@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { graphql } from "gatsby";
 import PropTypes from "prop-types";
 import { Layout } from "../../components/layout";
@@ -39,6 +39,22 @@ const Product = ({ data }) => {
     const {
         markdownRemark: { frontmatter },
     } = data;
+
+    const [attributes, setAttributes] = useState({});
+    const [buyable, setBuyable] = useState(false);
+
+    const getAttributesChangeHandler = (attributeName) => ({ value }) => {
+        setAttributes({
+            ...attributes,
+            [attributeName]: value,
+        });
+    };
+
+    useEffect(() => {
+        setBuyable(
+            frontmatter.attributes.length === Object.keys(attributes).length
+        );
+    }, [frontmatter, attributes]);
 
     return (
         <Layout>
@@ -91,6 +107,9 @@ const Product = ({ data }) => {
                                                             index,
                                                         })
                                                     )}
+                                                    onChange={getAttributesChangeHandler(
+                                                        attribute.name
+                                                    )}
                                                 />
                                             </Box>
                                         </Flex>
@@ -106,7 +125,9 @@ const Product = ({ data }) => {
                                 </Flex>
                             </Box>
                             <Box>
-                                <Button>Aggiungi al carrello</Button>
+                                <Button disabled={!buyable}>
+                                    Aggiungi al carrello
+                                </Button>
                             </Box>
                         </Flex>
                     </Box>
