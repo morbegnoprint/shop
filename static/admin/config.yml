@@ -34,27 +34,6 @@ collections:
           - name: "collection"
             widget: "hidden"
             defaultValue: "categories"
-    - name: "attributes"
-      identifier_field: "name"
-      label: "Attributes"
-      label_singular: "Attribute"
-      folder: "content/attributes"
-      create: true
-      editor:
-          preview: false
-      fields:
-          - label: "Name"
-            name: "name"
-            widget: "string"
-          - label: "Options"
-            name: "options"
-            widget: "list"
-          - name: "type"
-            widget: "hidden"
-            defaultValue: "hidden"
-          - name: "collection"
-            widget: "hidden"
-            defaultValue: "attributes"
     - name: "products"
       identifier_field: "name"
       label: "Products"
@@ -75,10 +54,14 @@ collections:
             widget: "text"
           - label: "Attributes"
             name: "attributes"
-            widget: "full-relation"
-            collection: "attributes"
-            searchFields: ["name"]
-            multiple: true
+            widget: "list"
+            fields:
+                - label: "Name"
+                  name: "name"
+                  widget: "string"
+                - label: "Options"
+                  name: "options"
+                  widget: "list"
           - label: "Category"
             name: "category"
             widget: "relation"
