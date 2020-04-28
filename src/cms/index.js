@@ -4,3 +4,4 @@ import { FullRelationControl } from "./widgets/full-relation";
 
 CMS.registerLocale("it", it);
 CMS.registerWidget("full-relation", FullRelationControl);
+CMS.init();
