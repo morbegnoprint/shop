@@ -8,6 +8,7 @@ backend:
         deleteMedia: '[skip ci] chore: delete "{{path}}"'
 media_folder: "static/images/uploads"
 public_folder: "/images/uploads"
+locale: "it"
 collections:
     - name: "categories"
       identifier_field: "name"
