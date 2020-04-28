@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFacebook, faInstagram } from "@fortawesome/free-brands-svg-icons";
-import { Link, RootFlex } from "./styled";
+import { RootFlex } from "./styled";
 import { Box } from "reflexbox";
 import { UndecoratedLink } from "../undecorated-link";
 
