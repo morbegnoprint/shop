@@ -9,6 +9,7 @@ export const Button = styled.button`
     text-decoration: none;
     transition: box-shadow ease 0.2s, background ease 0.2s, color ease 0.2s;
     font-size: 20px;
+    font-weight: 700;
     border: none;
     outline: none;
     :hover:not(:disabled) {
