@@ -74,16 +74,17 @@ collections:
             widget: "text"
           - label: "Attributes"
             name: "attributes"
-            widget: "relation"
-            collection: "attributes"
-            searchFields: ["name"]
-            valueField: "name"
+            widget: "list"
+            fields:
+                - widget: "full-relation"
+                  collection: "attributes"
+                  searchFields: ["name"]
           - label: "Category"
             name: "category"
             widget: "relation"
             collection: "categories"
             searchFields: ["name"]
-            valueField: "id"
+            valueField: "name"
           - name: "type"
             widget: "hidden"
             defaultValue: "product"
