@@ -8,6 +8,7 @@ import { Image } from "./styled";
 import { Button } from "../../components/button";
 import { Select } from "../../components/select";
 import { Seo } from "../../components/seo";
+import { Breadcrumbs } from "../../components/breadcrumbs";
 
 export const productQuery = graphql`
     query Product($id: String!) {
@@ -28,6 +29,7 @@ export const productQuery = graphql`
                 }
                 price
                 currency
+                category
             }
         }
     }
@@ -42,7 +44,13 @@ const Product = ({ data }) => {
         <Layout>
             <Seo description={frontmatter.description} />
             <Section>
-                <Flex width="100%" mx={-4}>
+                <Breadcrumbs
+                    locations={[
+                        { label: "Home", href: "/" },
+                        { label: frontmatter.category, href: "/categories" },
+                    ]}
+                />
+                <Flex width="100%" mx={-4} mt={4}>
                     <Box width="50%" px={4}>
                         <Image
                             fluid={{
