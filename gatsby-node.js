@@ -24,9 +24,9 @@ exports.createPages = async ({ actions, graphql }) => {
     }
     const { edges } = result.data.allMarkdownRemark;
     edges
-        .map(edge => edge.node)
-        .filter(node => node.frontmatter.type !== "hidden")
-        .forEach(node => {
+        .map((edge) => edge.node)
+        .filter((node) => node.frontmatter.type !== "hidden")
+        .forEach((node) => {
             const { id, frontmatter } = node;
             console.log(`creating page for ${frontmatter.type} with id ${id}`);
             createPage({
@@ -34,7 +34,7 @@ exports.createPages = async ({ actions, graphql }) => {
                 component: path.resolve(
                     `src/templates/${frontmatter.type}/index.jsx`
                 ),
-                context: { id }
+                context: { id },
             });
         });
 };
