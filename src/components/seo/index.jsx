@@ -46,7 +46,7 @@ export const Seo = ({ description, lang, meta, title, link }) => {
             htmlAttributes={{
                 lang: "it",
             }}
-            title={site.siteMetadata.title}
+            title={title || site.siteMetadata.title}
             link={[
                 {
                     rel: "shortcut icon",
@@ -127,5 +127,5 @@ Seo.propTypes = {
     description: PropTypes.string,
     meta: PropTypes.arrayOf(PropTypes.object),
     link: PropTypes.arrayOf(PropTypes.object),
-    title: PropTypes.string.isRequired,
+    title: PropTypes.string,
 };
