@@ -3,7 +3,7 @@ import ReactSelect from "react-select";
 
 const customStyles = {
     control: () => ({
-        borderRadius: "24px",
+        borderRadius: "28px",
         padding: "16px 24px",
         border: "solid 1px rgba(0, 0, 0, 0.4)",
         display: "flex",
@@ -46,7 +46,7 @@ const customStyles = {
     }),
     placeholder: (provided, state) => ({
         ...provided,
-        color: "rgba(0, 0, 0, 0.4)",
+        color: "rgba(0, 0, 0, 0.5)",
     }),
     indicatorSeparator: () => ({
         display: "none",
@@ -54,7 +54,7 @@ const customStyles = {
     dropdownIndicator: (provided) => ({
         ...provided,
         alignItems: "center",
-        height: "28px",
+        height: "16px",
         padding: "0",
         color: "rgba(0, 0, 0, 0.4)",
     }),
