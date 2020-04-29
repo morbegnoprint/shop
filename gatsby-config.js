@@ -68,5 +68,12 @@ module.exports = {
                 modulePath: `${__dirname}/src/cms`,
             },
         },
+        {
+            resolve: "gatsby-plugin-snipcart",
+            options: {
+                apiKey:
+                    "Njg4NzU3YzktNTQzZi00ODVjLWE1Y2EtOGZkMzU5YWVlOGQ2NjM3MjE3ODEyOTQwNzA5NTc5",
+            },
+        },
     ],
 };
