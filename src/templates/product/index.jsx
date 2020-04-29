@@ -104,7 +104,10 @@ const Product = ({ data }) => {
 
     return (
         <Layout>
-            <Seo description={frontmatter.description} />
+            <Seo
+                description={frontmatter.description}
+                title={frontmatter.name}
+            />
             <Section
                 title={frontmatter.name}
                 breadcrumbs={[

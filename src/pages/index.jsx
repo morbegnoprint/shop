@@ -56,7 +56,7 @@ const Index = () => {
 
     return (
         <Layout>
-            <Seo />
+            <Seo title="Home" />
             <Section title="Sfoglia le categorie">
                 <Categories
                     categories={categories.edges.reduce((categories, edge) => {

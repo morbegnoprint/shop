@@ -1,6 +1,6 @@
 module.exports = {
     siteMetadata: {
-        title: "Morbegnoprint shop | Stampa e personalizzazione",
+        title: "Morbegnoprint Shop",
         description:
             "Lo shop online di Morbegnoprint ti da accesso alla quintessenza dei prodotti di stampa digitale da noi prodotti, con la solita e garantita professionalità, passione e qualità.",
         author: "@luzzif",

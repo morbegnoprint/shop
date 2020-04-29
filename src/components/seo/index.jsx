@@ -46,7 +46,8 @@ export const Seo = ({ description, lang, meta, title, link }) => {
             htmlAttributes={{
                 lang: "it",
             }}
-            title={title || site.siteMetadata.title}
+            title={title}
+            titleTemplate={`%s | ${site.siteMetadata.title}`}
             link={[
                 {
                     rel: "shortcut icon",

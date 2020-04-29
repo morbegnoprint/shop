@@ -53,7 +53,7 @@ const Category = ({ data }) => {
 
     return (
         <Layout>
-            <Seo />
+            <Seo title={frontmatter.name} />
             <Section
                 title={frontmatter.name}
                 breadcrumbs={[

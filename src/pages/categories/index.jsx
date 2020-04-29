@@ -34,7 +34,7 @@ const Categories = () => {
 
     return (
         <Layout>
-            <Seo />
+            <Seo title="Categorie" />
             <Section title="Tutte le categorie">
                 <CategoryList
                     categories={categories.edges.reduce((categories, edge) => {
