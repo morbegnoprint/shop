@@ -42,6 +42,12 @@ const Categories = () => {
                         categories.push({ ...node.frontmatter, id: node.id });
                         return categories;
                     }, [])}
+                    truncatedText={
+                        <>
+                            <p>Non c'è più nulla qui</p>
+                            <p>¯\_(ツ)_/¯</p>
+                        </>
+                    }
                 />
             </Section>
         </Layout>

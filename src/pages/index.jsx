@@ -64,7 +64,7 @@ const Index = () => {
                         categories.push({ ...node.frontmatter, id: node.id });
                         return categories;
                     }, [])}
-                    truncated
+                    truncatedText="Mostra tutte"
                 />
             </Section>
             <Section title="I nostri prodotti" fullWidth>
