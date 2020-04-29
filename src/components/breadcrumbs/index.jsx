@@ -8,7 +8,7 @@ export const Breadcrumbs = ({ locations }) => (
     <Flex mx={-3}>
         {locations.map((location, index) => (
             <Fragment key={location.href}>
-                <Box px={3}>
+                <Box px={2}>
                     <Location to={location.href}>{location.label}</Location>
                 </Box>
                 {index < locations.length - 1 && (

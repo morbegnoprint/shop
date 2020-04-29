@@ -13,6 +13,7 @@ exports.createPages = async ({ actions, graphql }) => {
                             type
                             collection
                             category
+                            name
                         }
                     }
                 }
@@ -33,6 +34,9 @@ exports.createPages = async ({ actions, graphql }) => {
             const context = { id };
             if (frontmatter.type === "product") {
                 context.categoryName = frontmatter.category;
+            }
+            if (frontmatter.type === "category") {
+                context.name = frontmatter.name;
             }
             createPage({
                 path: `/${frontmatter.collection}/${id}`,

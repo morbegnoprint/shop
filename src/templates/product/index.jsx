@@ -4,14 +4,13 @@ import PropTypes from "prop-types";
 import { Layout } from "../../components/layout";
 import { Section } from "../../components/section";
 import { Flex, Box } from "reflexbox";
-import { Image, Name } from "./styled";
+import { Image, Subtitle } from "./styled";
 import { Button } from "../../components/button";
 import { Select } from "../../components/select";
 import { Seo } from "../../components/seo";
-import { Breadcrumbs } from "../../components/breadcrumbs";
 import { Input } from "../../components/input";
 
-export const productQuery = graphql`
+export const pageQuery = graphql`
     query($id: String!, $categoryName: String!) {
         product: markdownRemark(id: { eq: $id }) {
             id
@@ -106,7 +105,17 @@ const Product = ({ data }) => {
     return (
         <Layout>
             <Seo description={frontmatter.description} />
-            <Section>
+            <Section
+                title={frontmatter.name}
+                breadcrumbs={[
+                    { label: "Home", href: "/" },
+                    { label: "Categorie", href: "/categories" },
+                    {
+                        label: frontmatter.category,
+                        href: `/categories/${categoryId}`,
+                    },
+                ]}
+            >
                 <Flex
                     width="100%"
                     flexDirection={["column", "column", "row"]}
@@ -126,24 +135,10 @@ const Product = ({ data }) => {
                             justifyContent="center"
                             alignItems={["center", "center", "flex-start"]}
                         >
-                            <Box mb={1}>
-                                <Name>{frontmatter.name}</Name>
-                            </Box>
                             <Box mb={4}>
                                 <Flex flexDirection="column">
                                     <Box mb={3}>
-                                        <Breadcrumbs
-                                            locations={[
-                                                { label: "Home", href: "/" },
-                                                {
-                                                    label: frontmatter.category,
-                                                    href: `/categories/${categoryId}`,
-                                                },
-                                            ]}
-                                        />
-                                    </Box>
-                                    <Box>
-                                        <h3>Descrizione</h3>
+                                        <Subtitle>Descrizione</Subtitle>
                                     </Box>
                                     <Box mb={4}>{frontmatter.description}</Box>
                                     {frontmatter.attributes.map((attribute) => (
@@ -151,8 +146,10 @@ const Product = ({ data }) => {
                                             key={attribute.name}
                                             flexDirection="column"
                                         >
-                                            <Box mb={-2}>
-                                                <h3>{attribute.name}</h3>
+                                            <Box mb={3}>
+                                                <Subtitle>
+                                                    {attribute.name}
+                                                </Subtitle>
                                             </Box>
                                             <Box mb={4}>
                                                 <Select
@@ -171,8 +168,8 @@ const Product = ({ data }) => {
                                             </Box>
                                         </Flex>
                                     ))}
-                                    <Box mb={-2}>
-                                        <h3>Quantità</h3>
+                                    <Box mb={3}>
+                                        <Subtitle>Quantità</Subtitle>
                                     </Box>
                                     <Box mb={4}>
                                         <Input

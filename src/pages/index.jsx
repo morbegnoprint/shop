@@ -65,6 +65,7 @@ const Index = () => {
                         return categories;
                     }, [])}
                     truncatedText="Mostra tutte"
+                    truncatedHref="/categories"
                 />
             </Section>
             <Section title="I nostri prodotti" fullWidth>

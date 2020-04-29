@@ -4,7 +4,7 @@ import { Flex, Box } from "reflexbox";
 import { Category } from "./category";
 import { ContentCenteredCard } from "../content-centered-card";
 
-export const Categories = ({ categories, truncatedText }) => (
+export const Categories = ({ categories, truncatedText, truncatedHref }) => (
     <Flex m={-2}>
         {categories.map((category) => (
             <Box key={category.id} p={2} width={[1 / 2, 1 / 2, 1 / 3, 1 / 4]}>
@@ -19,7 +19,7 @@ export const Categories = ({ categories, truncatedText }) => (
             <Flex justifyContent="center">
                 <Flex justifyContent="center" width="100%">
                     <Box justifyContent="center" width="100%">
-                        <ContentCenteredCard href="/categories">
+                        <ContentCenteredCard href={truncatedHref}>
                             {truncatedText}
                         </ContentCenteredCard>
                     </Box>

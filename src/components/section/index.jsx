@@ -1,8 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Box, Flex } from "reflexbox";
+import { Breadcrumbs } from "../breadcrumbs";
+import { Title } from "./styled";
 
-export const Section = ({ title, children }) => (
+export const Section = ({ title, breadcrumbs, children }) => (
     <Flex my={4} justifyContent="center">
         <Flex
             alignItems="center"
@@ -10,8 +12,13 @@ export const Section = ({ title, children }) => (
             width={["90%", "80%", "70%", "60%"]}
         >
             {title && (
-                <Box fontWeight={700} mb={2}>
-                    <h2>{title}</h2>
+                <Box fontWeight={700} mb={breadcrumbs ? 1 : 4}>
+                    <Title>{title}</Title>
+                </Box>
+            )}
+            {breadcrumbs && (
+                <Box mb={4}>
+                    <Breadcrumbs locations={breadcrumbs} />
                 </Box>
             )}
             <Box width="100%">{children}</Box>
