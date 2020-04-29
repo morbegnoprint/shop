@@ -3,7 +3,6 @@ import { Seo } from "../../components/seo";
 import { Layout } from "../../components/layout";
 import { useStaticQuery, graphql } from "gatsby";
 import { Categories as CategoryList } from "../../components/categories";
-import { Breadcrumbs } from "../../components/breadcrumbs";
 import { Section } from "../../components/section";
 
 const Categories = () => {
@@ -36,14 +35,6 @@ const Categories = () => {
     return (
         <Layout>
             <Seo />
-            <Section>
-                <Breadcrumbs
-                    locations={[
-                        { label: "Home", href: "/" },
-                        { label: "Categorie", href: "/categories" },
-                    ]}
-                />
-            </Section>
             <Section title="Tutte le categorie">
                 <CategoryList
                     categories={categories.edges.reduce((categories, edge) => {

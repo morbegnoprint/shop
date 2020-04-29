@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import { Layout } from "../../components/layout";
 import { Section } from "../../components/section";
 import { Flex, Box } from "reflexbox";
-import { Image } from "./styled";
+import { Image, Name } from "./styled";
 import { Button } from "../../components/button";
 import { Select } from "../../components/select";
 import { Seo } from "../../components/seo";
@@ -126,12 +126,23 @@ const Product = ({ data }) => {
                             justifyContent="center"
                             alignItems={["center", "center", "flex-start"]}
                         >
-                            <Box mb={3}>
-                                <h1>{frontmatter.name}</h1>
+                            <Box mb={1}>
+                                <Name>{frontmatter.name}</Name>
                             </Box>
                             <Box mb={4}>
                                 <Flex flexDirection="column">
-                                    <Box mb={-2}>
+                                    <Box mb={3}>
+                                        <Breadcrumbs
+                                            locations={[
+                                                { label: "Home", href: "/" },
+                                                {
+                                                    label: frontmatter.category,
+                                                    href: `/categories/${categoryId}`,
+                                                },
+                                            ]}
+                                        />
+                                    </Box>
+                                    <Box>
                                         <h3>Descrizione</h3>
                                     </Box>
                                     <Box mb={4}>{frontmatter.description}</Box>
@@ -171,7 +182,11 @@ const Product = ({ data }) => {
                                         />
                                     </Box>
                                     <Box
-                                        textAlign={["center", "center", "initial"]}
+                                        textAlign={[
+                                            "center",
+                                            "center",
+                                            "initial",
+                                        ]}
                                         color="#f07d02"
                                         fontSize={36}
                                         fontWeight={700}

@@ -4,7 +4,7 @@ import { Link } from "gatsby";
 export const Location = styled(Link)`
     color: #f07d02;
     font-weight: 700;
-    font-size: 20px;
+    font-size: 16px;
 `;
 
 export const Divider = styled.span`
