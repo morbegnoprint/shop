@@ -8,10 +8,10 @@ import { Flex, Box } from "reflexbox";
 
 export const Layout = ({ children }) => (
     <ThemeProvider theme={theme}>
-        <Flex flexDirection="column" height="100%">
+        <Flex flexDirection="column" minHeight="100vh">
             <Box>
                 <Toolbar />
-                <ToolbarSpacer/>
+                <ToolbarSpacer />
             </Box>
             <Box flex="1">
                 <Main>{children}</Main>
