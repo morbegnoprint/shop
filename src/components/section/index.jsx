@@ -11,7 +11,7 @@ export const Section = ({ title, children }) => (
         >
             {title && (
                 <Box fontWeight={700} mb={2}>
-                    <h1>{title}</h1>
+                    <h2>{title}</h2>
                 </Box>
             )}
             <Box width="100%">{children}</Box>

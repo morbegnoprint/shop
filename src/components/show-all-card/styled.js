@@ -11,7 +11,7 @@ export const RootContainer = styled.div`
 
 export const TextContainer = styled.div`
     position: absolute;
-    font-size: 24px;
+    font-size: 20px;
     font-weight: 700;
     text-align: center;
     top: 50%;
