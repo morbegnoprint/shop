@@ -1,13 +1,15 @@
 import React, { useState } from "react";
 import {
     Container,
-    StyledMobileMenuIcon,
+    StyledIcon,
     AnimatedMobileMenu,
     Item,
+    VerticalDivider,
+    UnstyledButton,
 } from "./styled";
 import { useStaticQuery, graphql, Link } from "gatsby";
 import Image from "gatsby-image";
-import { faBars } from "@fortawesome/free-solid-svg-icons";
+import { faBars, faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 import { Flex, Box } from "reflexbox";
 
 export const Toolbar = () => {
@@ -48,14 +50,34 @@ export const Toolbar = () => {
                         />
                     </Link>
                 </Box>
-                <Flex display={["none !important", "flex !important"]}>
-                    <Box>
+                <Flex
+                    display={["none !important", "flex !important"]}
+                    mx={-3}
+                    alignItems="center"
+                >
+                    <Box px={3}>
                         <Item to="/categories">Categorie</Item>
                     </Box>
+                    <Box px={2}>
+                        <VerticalDivider />
+                    </Box>
+                    <Box px={3}>
+                        <UnstyledButton className="snipcart-checkout">
+                            <StyledIcon icon={faShoppingCart} />
+                        </UnstyledButton>
+                    </Box>
                 </Flex>
-                <Flex display={["flex", "none"]}>
-                    <Box>
-                        <StyledMobileMenuIcon
+                <Flex display={["flex", "none"]} mx={-3}>
+                    <Box px={3}>
+                        <UnstyledButton className="snipcart-checkout">
+                            <StyledIcon icon={faShoppingCart} />
+                        </UnstyledButton>
+                    </Box>
+                    <Box px={2}>
+                        <VerticalDivider />
+                    </Box>
+                    <Box px={3}>
+                        <StyledIcon
                             icon={faBars}
                             onClick={handleMobileMenuOpen}
                         />

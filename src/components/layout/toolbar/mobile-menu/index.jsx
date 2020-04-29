@@ -1,6 +1,6 @@
 import React from "react";
-import { StyledMobileMenuIcon, Item } from "../styled";
-import { faTimes } from "@fortawesome/free-solid-svg-icons";
+import { Item, StyledIcon } from "../styled";
+import { faTimes, faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 import { Root } from "../../footer/styled";
 import { Flex, Box } from "reflexbox";
 
@@ -13,7 +13,7 @@ export const MobileMenu = ({ onClose, ...rest }) => (
         </Flex>
         <Flex width={5 / 6} justifyContent="flex-end">
             <Box>
-                <StyledMobileMenuIcon icon={faTimes} onClick={onClose} />
+                <StyledIcon icon={faTimes} onClick={onClose} />
             </Box>
         </Flex>
     </Root>

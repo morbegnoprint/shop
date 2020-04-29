@@ -17,8 +17,20 @@ export const Container = styled(Flex)`
     z-index: 10;
 `;
 
-export const StyledMobileMenuIcon = styled(FontAwesomeIcon)`
+export const StyledIcon = styled(FontAwesomeIcon)`
     font-size: 24px;
+`;
+
+export const VerticalDivider = styled.div`
+    width: 1px;
+    height: 24px;
+    background: rgba(0, 0, 0, 0.4);
+`;
+
+export const UnstyledButton = styled.button`
+    border: none;
+    outline: none;
+    background: transparent;
 `;
 
 export const AnimatedMobileMenu = styled(MobileMenu)`

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { graphql } from "gatsby";
 import PropTypes from "prop-types";
 import { Layout } from "../../components/layout";
@@ -9,13 +9,16 @@ import { Button } from "../../components/button";
 import { Select } from "../../components/select";
 import { Seo } from "../../components/seo";
 import { Breadcrumbs } from "../../components/breadcrumbs";
+import { Input } from "../../components/input";
 
 export const productQuery = graphql`
     query($id: String!, $categoryName: String!) {
         product: markdownRemark(id: { eq: $id }) {
+            id
             frontmatter {
                 name
                 image {
+                    publicURL
                     childImageSharp {
                         fluid(maxWidth: 2048, quality: 90) {
                             ...GatsbyImageSharpFluid
@@ -40,11 +43,13 @@ export const productQuery = graphql`
 
 const Product = ({ data }) => {
     const {
-        product: { frontmatter },
+        product: { id: productId, frontmatter },
         category: { id: categoryId },
     } = data;
 
     const [attributes, setAttributes] = useState({});
+    const [snipcartAttributes, setSnipcartAttributes] = useState({});
+    const [quantity, setQuantity] = useState("");
     const [buyable, setBuyable] = useState(false);
 
     const getAttributesChangeHandler = (attributeName) => ({ value }) => {
@@ -55,10 +60,48 @@ const Product = ({ data }) => {
     };
 
     useEffect(() => {
+        setSnipcartAttributes({
+            "data-item-id": productId,
+            "data-item-price": frontmatter.price,
+            "data-item-url": `/products/${productId}`,
+            "data-item-description": frontmatter.description,
+            "data-item-image": frontmatter.image.publicUrl,
+            "data-item-name": frontmatter.name,
+            "data-item-categories": frontmatter.category,
+            "data-item-quantity": quantity,
+            ...frontmatter.attributes.reduce(
+                (mappedAttributes, attribute, index) => {
+                    mappedAttributes[`data-item-custom${index + 1}-name`] =
+                        attribute.name;
+                    mappedAttributes[
+                        `data-item-custom${index + 1}-options`
+                    ] = attribute.options.join("|");
+                    return mappedAttributes;
+                },
+                {}
+            ),
+        });
+    }, [frontmatter, productId, quantity]);
+
+    useEffect(() => {
         setBuyable(
-            frontmatter.attributes.length === Object.keys(attributes).length
+            parseInt(quantity) > 0 &&
+                frontmatter.attributes.length === Object.keys(attributes).length
         );
-    }, [frontmatter, attributes]);
+    }, [frontmatter, attributes, quantity]);
+
+    const handleQuantityChange = useCallback((event) => {
+        const rawValue = event.target.value;
+        if (!rawValue) {
+            setQuantity("");
+        } else {
+            const parsedValue = parseInt(event.target.value);
+            console.log(parsedValue);
+            if (!isNaN(parsedValue)) {
+                setQuantity(parsedValue);
+            }
+        }
+    }, []);
 
     return (
         <Layout>
@@ -107,6 +150,7 @@ const Product = ({ data }) => {
                                             </Box>
                                             <Box mb={4}>
                                                 <Select
+                                                    placeholder="Seleziona..."
                                                     options={attribute.options.map(
                                                         (option, index) => ({
                                                             label: option,
@@ -121,6 +165,16 @@ const Product = ({ data }) => {
                                             </Box>
                                         </Flex>
                                     ))}
+                                    <Box mb={-2}>
+                                        <h3>Quantità</h3>
+                                    </Box>
+                                    <Box mb={4}>
+                                        <Input
+                                            placeholder="1, 10, 100..."
+                                            value={quantity}
+                                            onChange={handleQuantityChange}
+                                        />
+                                    </Box>
                                     <Box
                                         color="#f07d02"
                                         fontSize={36}
@@ -132,7 +186,11 @@ const Product = ({ data }) => {
                                 </Flex>
                             </Box>
                             <Box>
-                                <Button disabled={!buyable}>
+                                <Button
+                                    className="snipcart-add-item"
+                                    disabled={!buyable}
+                                    {...snipcartAttributes}
+                                >
                                     Aggiungi al carrello
                                 </Button>
                             </Box>
