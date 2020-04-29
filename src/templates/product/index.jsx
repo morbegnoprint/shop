@@ -107,17 +107,12 @@ const Product = ({ data }) => {
         <Layout>
             <Seo description={frontmatter.description} />
             <Section>
-                <Breadcrumbs
-                    locations={[
-                        { label: "Home", href: "/" },
-                        {
-                            label: frontmatter.category,
-                            href: `/categories/${categoryId}`,
-                        },
-                    ]}
-                />
-                <Flex width="100%" mx={-4} mt={4}>
-                    <Box width="50%" px={4}>
+                <Flex
+                    width="100%"
+                    flexDirection={["column", "column", "row"]}
+                    alignItems="center"
+                >
+                    <Box width={[1, 1, 1 / 2]} px={[2, 6, 4]} mb={[4, 4, 0]}>
                         <Image
                             fluid={{
                                 ...frontmatter.image.childImageSharp.fluid,
@@ -125,11 +120,11 @@ const Product = ({ data }) => {
                             }}
                         />
                     </Box>
-                    <Box width="50%" px={4}>
+                    <Box width={[1, 1, 1 / 2]} px={[2, 5, 4]}>
                         <Flex
-                            height="100%"
                             flexDirection="column"
                             justifyContent="center"
+                            alignItems={["center", "center", "flex-start"]}
                         >
                             <Box mb={3}>
                                 <h1>{frontmatter.name}</h1>
@@ -176,6 +171,7 @@ const Product = ({ data }) => {
                                         />
                                     </Box>
                                     <Box
+                                        textAlign={["center", "center", "initial"]}
                                         color="#f07d02"
                                         fontSize={36}
                                         fontWeight={700}

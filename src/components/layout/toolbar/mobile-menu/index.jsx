@@ -1,6 +1,6 @@
 import React from "react";
 import { Item, StyledIcon } from "../styled";
-import { faTimes, faShoppingCart } from "@fortawesome/free-solid-svg-icons";
+import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import { Root } from "../../footer/styled";
 import { Flex, Box } from "reflexbox";
 
