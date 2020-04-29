@@ -11,8 +11,8 @@ import { Seo } from "../../components/seo";
 import { Breadcrumbs } from "../../components/breadcrumbs";
 
 export const productQuery = graphql`
-    query Product($id: String!) {
-        markdownRemark(id: { eq: $id }) {
+    query($id: String!, $categoryName: String!) {
+        product: markdownRemark(id: { eq: $id }) {
             frontmatter {
                 name
                 image {
@@ -32,12 +32,16 @@ export const productQuery = graphql`
                 category
             }
         }
+        category: markdownRemark(frontmatter: { name: { eq: $categoryName } }) {
+            id
+        }
     }
 `;
 
 const Product = ({ data }) => {
     const {
-        markdownRemark: { frontmatter },
+        product: { frontmatter },
+        category: { id: categoryId },
     } = data;
 
     const [attributes, setAttributes] = useState({});
@@ -63,7 +67,10 @@ const Product = ({ data }) => {
                 <Breadcrumbs
                     locations={[
                         { label: "Home", href: "/" },
-                        { label: frontmatter.category, href: "/categories" },
+                        {
+                            label: frontmatter.category,
+                            href: `/categories/${categoryId}`,
+                        },
                     ]}
                 />
                 <Flex width="100%" mx={-4} mt={4}>

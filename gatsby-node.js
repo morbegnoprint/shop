@@ -12,6 +12,7 @@ exports.createPages = async ({ actions, graphql }) => {
                         frontmatter {
                             type
                             collection
+                            category
                         }
                     }
                 }
@@ -29,12 +30,16 @@ exports.createPages = async ({ actions, graphql }) => {
         .forEach((node) => {
             const { id, frontmatter } = node;
             console.log(`creating page for ${frontmatter.type} with id ${id}`);
+            const context = { id };
+            if (frontmatter.type === "product") {
+                context.categoryName = frontmatter.category;
+            }
             createPage({
                 path: `/${frontmatter.collection}/${id}`,
                 component: path.resolve(
                     `src/templates/${frontmatter.type}/index.jsx`
                 ),
-                context: { id },
+                context,
             });
         });
 };
