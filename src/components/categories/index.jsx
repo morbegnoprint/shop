@@ -5,9 +5,9 @@ import { Category } from "./category";
 import { ShowAllCard } from "../show-all-card";
 
 export const Categories = ({ categories, truncated }) => (
-    <Flex m={-2} overflow="scroll">
+    <Flex m={-2}>
         {categories.map((category) => (
-            <Box key={category.id} p={3} width={[1 / 2, 1 / 2, 1 / 3, 1 / 4]}>
+            <Box key={category.id} p={2} width={[1 / 2, 1 / 2, 1 / 3, 1 / 4]}>
                 <Flex justifyContent="center" width="100%">
                     <Box justifyContent="center" width="100%">
                         <Category {...category} />
@@ -16,7 +16,7 @@ export const Categories = ({ categories, truncated }) => (
             </Box>
         ))}
         {truncated && (
-            <Box p={3} width={[1 / 2, 1 / 2, 1 / 3, 1 / 4]}>
+            <Box p={2} width={[1 / 2, 1 / 2, 1 / 3, 1 / 4]}>
                 <Flex justifyContent="center">
                     <Flex justifyContent="center" width="100%">
                         <Box justifyContent="center" width="100%">

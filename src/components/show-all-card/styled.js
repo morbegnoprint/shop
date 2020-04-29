@@ -16,6 +16,6 @@ export const TextContainer = styled.div`
     text-align: center;
     top: 50%;
     transform: translateY(-50%);
-    right: 0;
-    left: 0;
+    right: 16px;
+    left: 16px;
 `;

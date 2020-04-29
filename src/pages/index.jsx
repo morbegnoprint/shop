@@ -57,7 +57,7 @@ const Index = () => {
     return (
         <Layout>
             <Seo />
-            <Section title="Sfoglia le categorie" fullWidth>
+            <Section title="Sfoglia le categorie">
                 <Categories
                     categories={categories.edges.reduce((categories, edge) => {
                         const { node } = edge;
@@ -67,13 +67,15 @@ const Index = () => {
                     truncated
                 />
             </Section>
-            <Products
-                products={products.edges.reduce((products, edge) => {
-                    const { node } = edge;
-                    products.push({ ...node.frontmatter, id: node.id });
-                    return products;
-                }, [])}
-            />
+            <Section title="I nostri prodotti" fullWidth>
+                <Products
+                    products={products.edges.reduce((products, edge) => {
+                        const { node } = edge;
+                        products.push({ ...node.frontmatter, id: node.id });
+                        return products;
+                    }, [])}
+                />
+            </Section>
         </Layout>
     );
 };
