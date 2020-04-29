@@ -4,32 +4,12 @@ import { Layout } from "../components/layout";
 import { useStaticQuery, graphql } from "gatsby";
 import { Categories } from "../components/categories";
 import { Products } from "../components/products";
+import { Section } from "../components/section";
 
 const Index = () => {
     const { products, categories } = useStaticQuery(
         graphql`
             query {
-                favicon16: file(relativePath: { eq: "favicon/16.png" }) {
-                    childImageSharp {
-                        fixed(height: 16) {
-                            ...GatsbyImageSharpFixed
-                        }
-                    }
-                }
-                favicon32: file(relativePath: { eq: "favicon/32.png" }) {
-                    childImageSharp {
-                        fixed(height: 32) {
-                            ...GatsbyImageSharpFixed
-                        }
-                    }
-                }
-                favicon64: file(relativePath: { eq: "favicon/64.png" }) {
-                    childImageSharp {
-                        fixed(height: 64) {
-                            ...GatsbyImageSharpFixed
-                        }
-                    }
-                }
                 products: allMarkdownRemark(
                     filter: { frontmatter: { type: { eq: "product" } } }
                 ) {
@@ -77,13 +57,16 @@ const Index = () => {
     return (
         <Layout>
             <Seo />
-            <Categories
-                categories={categories.edges.reduce((categories, edge) => {
-                    const { node } = edge;
-                    categories.push({ ...node.frontmatter, id: node.id });
-                    return categories;
-                }, [])}
-            />
+            <Section title="Sfoglia le categorie" fullWidth>
+                <Categories
+                    categories={categories.edges.reduce((categories, edge) => {
+                        const { node } = edge;
+                        categories.push({ ...node.frontmatter, id: node.id });
+                        return categories;
+                    }, [])}
+                    truncated
+                />
+            </Section>
             <Products
                 products={products.edges.reduce((products, edge) => {
                     const { node } = edge;

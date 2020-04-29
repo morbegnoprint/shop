@@ -1,5 +1,10 @@
 import React, { useState } from "react";
-import { Container, StyledMobileMenuIcon, AnimatedMobileMenu } from "./styled";
+import {
+    Container,
+    StyledMobileMenuIcon,
+    AnimatedMobileMenu,
+    Item,
+} from "./styled";
 import { useStaticQuery, graphql, Link } from "gatsby";
 import Image from "gatsby-image";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
@@ -43,6 +48,11 @@ export const Toolbar = () => {
                         />
                     </Link>
                 </Box>
+                <Flex display={["none !important", "flex !important"]}>
+                    <Box>
+                        <Item to="/categories">Categorie</Item>
+                    </Box>
+                </Flex>
                 <Flex display={["flex", "none"]}>
                     <Box>
                         <StyledMobileMenuIcon

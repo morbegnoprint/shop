@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { Box, Flex } from "reflexbox";
 
 export const Section = ({ title, children }) => (
-    <Flex py={4} justifyContent="center">
+    <Flex my={4} justifyContent="center">
         <Flex
             alignItems="center"
             flexDirection="column"
@@ -21,5 +21,5 @@ export const Section = ({ title, children }) => (
 
 Section.propTypes = {
     title: PropTypes.string,
-    children: PropTypes.node.isRequired
+    children: PropTypes.node.isRequired,
 };
