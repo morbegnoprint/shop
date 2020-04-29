@@ -2,9 +2,8 @@ import React from "react";
 import PropTypes from "prop-types";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFacebook, faInstagram } from "@fortawesome/free-brands-svg-icons";
-import { RootFlex } from "./styled";
+import { RootFlex, Link } from "./styled";
 import { Box } from "reflexbox";
-import { UndecoratedLink } from "../undecorated-link";
 
 const socialInfo = {
     facebook: {
@@ -22,7 +21,7 @@ const socialInfo = {
 export const SocialLink = ({ type }) => {
     const socialSpecificInfo = socialInfo[type];
     return (
-        <UndecoratedLink
+        <Link
             href={socialSpecificInfo.url}
             target="_blank"
             rel="noopener noreferrer"
@@ -33,7 +32,7 @@ export const SocialLink = ({ type }) => {
                 </Box>
                 <Box>{socialSpecificInfo.name}</Box>
             </RootFlex>
-        </UndecoratedLink>
+        </Link>
     );
 };
 
