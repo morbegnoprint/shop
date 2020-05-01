@@ -64,7 +64,7 @@ const Product = ({ data }) => {
             "data-item-price": frontmatter.price,
             "data-item-url": `/products/${productId}`,
             "data-item-description": frontmatter.description,
-            "data-item-image": frontmatter.image.publicUrl,
+            "data-item-image": frontmatter.image.publicURL,
             "data-item-name": frontmatter.name,
             "data-item-categories": frontmatter.category,
             "data-item-quantity": quantity,
