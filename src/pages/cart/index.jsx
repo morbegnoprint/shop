@@ -10,7 +10,10 @@ import { Box, Flex } from "reflexbox";
 const Cart = () => {
     const dispatch = useDispatch();
     const snipcartClient = useSnipcartClient();
-    const cart = useSelector((state) => state.cart && state.cart.cart);
+    const cart = useSelector(
+        (state) =>
+            state.snipcart && state.snipcart.state && state.snipcart.state.cart
+    );
 
     const [items, setItems] = useState([]);
 
