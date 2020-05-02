@@ -9,6 +9,9 @@ import { Button } from "../../components/button";
 import { Select } from "../../components/select";
 import { Seo } from "../../components/seo";
 import { Input } from "../../components/input";
+import { addItemToSnipcart } from "../../actions/snipcart";
+import { useDispatch } from "react-redux";
+import { useSnipcartClient } from "../../hooks/cart";
 
 export const pageQuery = graphql`
     query($id: String!, $categoryName: String!) {
@@ -45,9 +48,11 @@ const Product = ({ data }) => {
         product: { id: productId, frontmatter },
         category: { id: categoryId },
     } = data;
+    const dispatch = useDispatch();
+    const snipcartClient = useSnipcartClient();
 
     const [attributes, setAttributes] = useState({});
-    const [snipcartAttributes, setSnipcartAttributes] = useState({});
+    const [snipcartItem, setSnipcartItem] = useState({});
     const [quantity, setQuantity] = useState("");
     const [buyable, setBuyable] = useState(false);
 
@@ -59,25 +64,24 @@ const Product = ({ data }) => {
     };
 
     useEffect(() => {
-        setSnipcartAttributes({
-            "data-item-id": productId,
-            "data-item-price": frontmatter.price,
-            "data-item-url": `/products/${productId}`,
-            "data-item-description": frontmatter.description,
-            "data-item-image": frontmatter.image.publicURL,
-            "data-item-name": frontmatter.name,
-            "data-item-categories": frontmatter.category,
-            "data-item-quantity": quantity,
-            ...frontmatter.attributes.reduce(
-                (mappedAttributes, attribute, index) => {
-                    mappedAttributes[`data-item-custom${index + 1}-name`] =
-                        attribute.name;
-                    mappedAttributes[
-                        `data-item-custom${index + 1}-options`
-                    ] = attribute.options.join("|");
-                    return mappedAttributes;
+        setSnipcartItem({
+            id: productId,
+            price: frontmatter.price,
+            url: `/products/${productId}`,
+            description: frontmatter.description,
+            image: frontmatter.image.publicURL,
+            name: frontmatter.name,
+            categories: [frontmatter.category],
+            quantity: quantity,
+            customFields: frontmatter.attributes.reduce(
+                (customFields, attribute, index) => {
+                    customFields.push({
+                        name: attribute.name,
+                        options: attribute.options,
+                    });
+                    return customFields;
                 },
-                {}
+                []
             ),
         });
     }, [frontmatter, productId, quantity]);
@@ -100,6 +104,10 @@ const Product = ({ data }) => {
             }
         }
     }, []);
+
+    const handleAddItemToSnipcart = useCallback(() => {
+        dispatch(addItemToSnipcart(snipcartClient, snipcartItem));
+    }, [dispatch, snipcartClient, snipcartItem]);
 
     return (
         <Layout>
@@ -197,9 +205,8 @@ const Product = ({ data }) => {
                             </Box>
                             <Box>
                                 <Button
-                                    className="snipcart-add-item"
                                     disabled={!buyable}
-                                    {...snipcartAttributes}
+                                    onClick={handleAddItemToSnipcart}
                                 >
                                     Aggiungi al carrello
                                 </Button>

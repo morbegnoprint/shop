@@ -34,3 +34,17 @@ export const getSnipcartState = (client) => async (dispatch, getState) => {
     }
     dispatch(deleteLoading());
 };
+
+export const addItemToSnipcart = (client, item) => async (
+    dispatch,
+    getState
+) => {
+    dispatch(postLoading());
+    try {
+        await client.api.cart.items.add(item);
+        dispatch(getSnipcartState(client));
+    } catch (error) {
+        console.error(error);
+    }
+    dispatch(deleteLoading());
+};
