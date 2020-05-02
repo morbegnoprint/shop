@@ -95,7 +95,6 @@ const Product = ({ data }) => {
             setQuantity("");
         } else {
             const parsedValue = parseInt(event.target.value);
-            console.log(parsedValue);
             if (!isNaN(parsedValue)) {
                 setQuantity(parsedValue);
             }

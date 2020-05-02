@@ -5,12 +5,12 @@ import {
     AnimatedMobileMenu,
     Item,
     VerticalDivider,
-    UnstyledButton,
 } from "./styled";
 import { useStaticQuery, graphql, Link } from "gatsby";
 import Image from "gatsby-image";
 import { faBars, faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 import { Flex, Box } from "reflexbox";
+import { UndecoratedLink } from "../../undecorated-link";
 
 export const Toolbar = () => {
     const { logoImage } = useStaticQuery(graphql`
@@ -62,16 +62,16 @@ export const Toolbar = () => {
                         <VerticalDivider />
                     </Box>
                     <Box px={3}>
-                        <UnstyledButton className="snipcart-checkout">
+                        <UndecoratedLink to="/cart">
                             <StyledIcon icon={faShoppingCart} />
-                        </UnstyledButton>
+                        </UndecoratedLink>
                     </Box>
                 </Flex>
                 <Flex display={["flex", "none"]} mx={-3}>
                     <Box px={3}>
-                        <UnstyledButton className="snipcart-checkout">
+                        <UndecoratedLink to="/cart">
                             <StyledIcon icon={faShoppingCart} />
-                        </UnstyledButton>
+                        </UndecoratedLink>
                     </Box>
                     <Box px={2}>
                         <VerticalDivider />

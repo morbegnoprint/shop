@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import { Helmet } from "react-helmet";
 import { useStaticQuery, graphql } from "gatsby";
@@ -41,12 +41,6 @@ export const Seo = ({ description, lang, meta, title, link }) => {
 
     const metaDescription = description || site.siteMetadata.description;
 
-    useEffect(() => {
-        document.addEventListener("snipcart.ready", function () {
-            window.Snipcart.api.session.setLanguage("it");
-        });
-    }, []);
-
     return (
         <Helmet
             htmlAttributes={{
@@ -78,6 +72,15 @@ export const Seo = ({ description, lang, meta, title, link }) => {
                     rel: "stylesheet",
                 },
             ].concat(link)}
+            script={[
+                {
+                    src:
+                        "https://cdn.snipcart.com/themes/v3.0.12/default/snipcart.js",
+                    "data-api-key":
+                        "Njg4NzU3YzktNTQzZi00ODVjLWE1Y2EtOGZkMzU5YWVlOGQ2NjM3MjE3ODEyOTQwNzA5NTc5",
+                    id: "snipcart",
+                },
+            ]}
             meta={[
                 {
                     name: "viewport",

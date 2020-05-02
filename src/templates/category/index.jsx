@@ -45,7 +45,6 @@ export const pageQuery = graphql`
 `;
 
 const Category = ({ data }) => {
-    console.log(data);
     const {
         category: { frontmatter },
         products,
