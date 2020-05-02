@@ -4,10 +4,14 @@ import thunk from "redux-thunk";
 import { Provider } from "react-redux";
 import { reducers } from "../../reducers";
 
-const composeEnhancers =
-    (window && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) || compose;
-const store = createStore(reducers, composeEnhancers(applyMiddleware(thunk)));
-
-export const wrapWithRedux = ({ element }) => {
+export const wrapWithRedux = (element, ssr) => {
+    let composeEnhancers = compose;
+    if (!ssr) {
+        composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__;
+    }
+    const store = createStore(
+        reducers,
+        composeEnhancers(applyMiddleware(thunk))
+    );
     return <Provider store={store}>{element}</Provider>;
 };

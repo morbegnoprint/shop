@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useSnipcartClient } from "../../hooks/cart";
 import { useEffect } from "react";
 import { Box, Flex } from "reflexbox";
+import { CartItem } from "../../components/cart/item";
 
 const Cart = () => {
     const dispatch = useDispatch();
@@ -30,7 +31,7 @@ const Cart = () => {
                 {items.length > 0 ? (
                     items.map((item) => {
                         console.log(item);
-                        return "YO";
+                        return <CartItem key={item.id} {...item} />;
                     })
                 ) : (
                     <Flex
