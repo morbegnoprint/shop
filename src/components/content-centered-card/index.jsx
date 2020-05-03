@@ -13,6 +13,6 @@ export const ContentCenteredCard = ({ href, children }) => (
 );
 
 ContentCenteredCard.propTypes = {
-    href: PropTypes.string.isRequired,
+    href: PropTypes.string,
     children: PropTypes.node.isRequired,
 };
