@@ -46,7 +46,7 @@ export const initializeSnipcartEventsListener = (client) => async (
     dispatch,
     getState
 ) => {
-    client.events.on("item.adding", (parsedCartItem) => {
+    client.events.on("item.added", (parsedCartItem) => {
         toast.success("Carrello aggiornato");
     });
 };
