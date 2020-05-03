@@ -76,9 +76,6 @@ export const Seo = ({ description, lang, meta, title, link }) => {
                 {
                     src:
                         "https://cdn.snipcart.com/themes/v3.0.12/default/snipcart.js",
-                    "data-api-key":
-                        "Njg4NzU3YzktNTQzZi00ODVjLWE1Y2EtOGZkMzU5YWVlOGQ2NjM3MjE3ODEyOTQwNzA5NTc5",
-                    id: "snipcart",
                 },
             ]}
             meta={[
