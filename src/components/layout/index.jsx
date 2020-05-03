@@ -17,10 +17,6 @@ export const Layout = ({ children }) => (
             <Box flex="1">
                 <Main>{children}</Main>
             </Box>
-            <div
-                data-api-key="Njg4NzU3YzktNTQzZi00ODVjLWE1Y2EtOGZkMzU5YWVlOGQ2NjM3MjE3ODEyOTQwNzA5NTc5"
-                id="snipcart"
-            />
             <Box>
                 <Footer />
             </Box>
