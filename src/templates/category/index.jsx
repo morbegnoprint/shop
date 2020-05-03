@@ -59,7 +59,7 @@ const Category = ({ data }) => {
                 title={frontmatter.name}
                 breadcrumbs={[
                     { label: "Home", href: "/" },
-                    { label: "Categorie", href: "categories" },
+                    { label: "Categorie", href: "/categories" },
                 ]}
             >
                 <Products
