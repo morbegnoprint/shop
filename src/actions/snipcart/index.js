@@ -63,3 +63,17 @@ export const removeItemFromSnipcart = (client, itemId) => async (
     }
     dispatch(deleteLoading());
 };
+
+export const updateSnipcartItem = (client, updatedItem) => async (
+    dispatch,
+    getState
+) => {
+    dispatch(postLoading());
+    try {
+        await client.api.cart.items.update(updatedItem);
+        dispatch(getSnipcartState(client));
+    } catch (error) {
+        console.error(error);
+    }
+    dispatch(deleteLoading());
+};

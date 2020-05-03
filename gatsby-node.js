@@ -30,7 +30,6 @@ exports.createPages = async ({ actions, graphql }) => {
         .filter((node) => node.frontmatter.type !== "hidden")
         .forEach((node) => {
             const { id, frontmatter } = node;
-            console.log(`creating page for ${frontmatter.type} with id ${id}`);
             const context = { id };
             if (frontmatter.type === "product") {
                 context.categoryName = frontmatter.category;

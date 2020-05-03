@@ -12,14 +12,20 @@ export const CartItem = ({
     name,
     image,
     quantity,
+    onQuantityChange,
     price,
     onRemove,
 }) => {
-    const handleQuantityChange = () => {};
-
     const handleLocalRemove = useCallback(() => {
         onRemove(uniqueId);
     }, [uniqueId, onRemove]);
+
+    const handleLocalQuantityChange = useCallback(
+        (event) => {
+            onQuantityChange(uniqueId, event.target.value);
+        },
+        [uniqueId, onQuantityChange]
+    );
 
     return (
         <Flex
@@ -80,7 +86,7 @@ export const CartItem = ({
                                     <Input
                                         placeholder="1, 10, 100..."
                                         value={quantity}
-                                        onChange={handleQuantityChange}
+                                        onChange={handleLocalQuantityChange}
                                     />
                                 </Box>
                                 <Flex alignItems="center">
