@@ -1,4 +1,5 @@
 import { postLoading, deleteLoading } from "../loadings";
+import { toast } from "react-toastify";
 
 export const GET_SNIPCART_CLIENT_SUCCESS = "GET_SNIPCART_CLIENT_SUCCESS";
 export const GET_SNIPCART_STATE_SUCCESS = "GET_SNIPCART_STATE_SUCCESS";
@@ -39,6 +40,15 @@ export const getSnipcartState = (client) => async (dispatch, getState) => {
         console.error(error);
     }
     dispatch(deleteLoading());
+};
+
+export const initializeSnipcartEventsListener = (client) => async (
+    dispatch,
+    getState
+) => {
+    client.events.on("item.adding", (parsedCartItem) => {
+        toast.success("Carrello aggiornato");
+    });
 };
 
 export const addItemToSnipcart = (client, item) => async (

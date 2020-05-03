@@ -7,13 +7,13 @@ export const SpinnerContainer = styled(Flex)`
     bottom: 0;
     left: 0;
     right: 0;
+    z-index: 10;
     ${(props) =>
         props.open
             ? css`
                   opacity: 1;
                   transition: opacity 0.3s ease;
                   transform: translateY(0);
-                  z-index: 10000;
               `
             : css`
                   opacity: 0;
