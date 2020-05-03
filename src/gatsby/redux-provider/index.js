@@ -7,7 +7,8 @@ import { reducers } from "../../reducers";
 export const wrapWithRedux = (element, ssr) => {
     let composeEnhancers = compose;
     if (!ssr) {
-        composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__;
+        composeEnhancers =
+            window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || composeEnhancers;
     }
     const store = createStore(
         reducers,
