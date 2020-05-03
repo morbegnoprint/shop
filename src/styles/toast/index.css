@@ -1,5 +1,6 @@
 .toast-root {
     width: auto;
+    margin-top: 64px;
 }
 
 @media (max-width: 600px) {

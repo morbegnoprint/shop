@@ -42,15 +42,6 @@ export const getSnipcartState = (client) => async (dispatch, getState) => {
     dispatch(deleteLoading());
 };
 
-export const initializeSnipcartEventsListener = (client) => async (
-    dispatch,
-    getState
-) => {
-    client.events.on("item.added", (parsedCartItem) => {
-        toast.success("Carrello aggiornato");
-    });
-};
-
 export const addItemToSnipcart = (client, item) => async (
     dispatch,
     getState
@@ -59,6 +50,7 @@ export const addItemToSnipcart = (client, item) => async (
     try {
         await client.api.cart.items.add(item);
         dispatch(getSnipcartState(client));
+        toast.success("Carrello aggiornato");
     } catch (error) {
         console.error(error);
     }
@@ -73,6 +65,7 @@ export const removeItemFromSnipcart = (client, itemId) => async (
     try {
         await client.api.cart.items.remove(itemId);
         dispatch(getSnipcartState(client));
+        toast.success("Carrello aggiornato");
     } catch (error) {
         console.error(error);
     }

@@ -13,7 +13,7 @@ export const wrapRootElement = ({ element }) =>
                 className="toast-root"
                 toastClassName="toast-container"
                 bodyClassName="toast-body"
-                position="bottom-right"
+                position="top-right"
                 closeButton={false}
                 draggable={false}
                 transition={Slide}
