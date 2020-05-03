@@ -12,9 +12,11 @@ export const UniversalSpinner = ({ timeout }) => {
     const debouncedOpen = useMemo(
         () =>
             debounce(() => {
-                setOpen(loading);
+                if (!open && loading) {
+                    setOpen(true);
+                }
             }, timeout),
-        [loading, timeout]
+        [loading, timeout, open]
     );
 
     useEffect(() => {
