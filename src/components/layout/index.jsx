@@ -5,6 +5,7 @@ import { Toolbar } from "./toolbar";
 import { Main, ToolbarSpacer } from "./styled";
 import { Footer } from "./footer";
 import { Flex, Box } from "reflexbox";
+import { UniversalSpinner } from "../universal-spinner";
 
 export const Layout = ({ children }) => (
     <ThemeProvider theme={theme}>
@@ -20,5 +21,6 @@ export const Layout = ({ children }) => (
                 <Footer />
             </Box>
         </Flex>
+        <UniversalSpinner />
     </ThemeProvider>
 );

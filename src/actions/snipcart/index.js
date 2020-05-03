@@ -19,11 +19,11 @@ export const getSnipcartClient = () => async (dispatch) => {
         document.addEventListener("snipcart.ready", async () => {
             await window.Snipcart.ready;
             dispatch(getSnipcartClientSuccess(window.Snipcart));
+            dispatch(deleteLoading());
         });
     } catch (error) {
         console.error(error);
     }
-    dispatch(deleteLoading());
 };
 
 export const getSnipcartState = (client) => async (dispatch, getState) => {
