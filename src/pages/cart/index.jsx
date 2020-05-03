@@ -7,6 +7,8 @@ import { useSnipcartClient } from "../../hooks/cart";
 import { useEffect } from "react";
 import { Box, Flex } from "reflexbox";
 import { CartItem } from "../../components/cart/item";
+import { useCallback } from "react";
+import { removeItemFromSnipcart } from "../../actions/snipcart";
 
 const Cart = () => {
     const dispatch = useDispatch();
@@ -24,6 +26,14 @@ const Cart = () => {
         }
     }, [cart]);
 
+    const handleRemove = useCallback(
+        (id) => {
+            console.log("LOLOL");
+            dispatch(removeItemFromSnipcart(snipcartClient, id));
+        },
+        [dispatch, snipcartClient]
+    );
+
     return (
         <Layout>
             <Seo title="Cart" />
@@ -31,7 +41,13 @@ const Cart = () => {
                 {items.length > 0 ? (
                     items.map((item) => {
                         console.log(item);
-                        return <CartItem key={item.id} {...item} />;
+                        return (
+                            <CartItem
+                                key={item.id}
+                                {...item}
+                                onRemove={handleRemove}
+                            />
+                        );
                     })
                 ) : (
                     <Flex

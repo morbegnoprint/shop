@@ -1,33 +1,25 @@
-import React, { useState, useEffect, useCallback } from "react";
-import { graphql } from "gatsby";
+import React, { useCallback } from "react";
 import PropTypes from "prop-types";
-import { Layout } from "../../../components/layout";
-import { Section } from "../../../components/section";
 import { Flex, Box } from "reflexbox";
 import { Image, Subtitle, Price } from "./styled";
-import { Button } from "../../../components/button";
-import { Select } from "../../../components/select";
-import { Seo } from "../../../components/seo";
 import { Input } from "../../../components/input";
-import { addItemToSnipcart } from "../../../actions/snipcart";
-import { useDispatch } from "react-redux";
-import { useSnipcartClient } from "../../../hooks/cart";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export const CartItem = ({
+    uniqueId,
     description,
     name,
     image,
-    category,
     quantity,
     price,
-    currency,
+    onRemove,
 }) => {
-    const dispatch = useDispatch();
-    const snipcartClient = useSnipcartClient();
-
     const handleQuantityChange = () => {};
+
+    const handleLocalRemove = useCallback(() => {
+        onRemove(uniqueId);
+    }, [uniqueId, onRemove]);
 
     return (
         <Flex
@@ -101,7 +93,12 @@ export const CartItem = ({
                         </Box>
                     </Flex>
                     <Box>
-                        <FontAwesomeIcon icon={faTimes} size={32} />
+                        <FontAwesomeIcon
+                            icon={faTimes}
+                            size="lg"
+                            onClick={handleLocalRemove}
+                            cursor="pointer"
+                        />
                     </Box>
                 </Flex>
             </Box>
@@ -109,4 +106,12 @@ export const CartItem = ({
     );
 };
 
-CartItem.propTypes = {};
+CartItem.propTypes = {
+    uniqueId: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    image: PropTypes.string.isRequired,
+    quantity: PropTypes.number.isRequired,
+    price: PropTypes.number.isRequired,
+    onRemove: PropTypes.func.isRequired,
+};
