@@ -5,6 +5,7 @@ import { Image, Subtitle, Price } from "./styled";
 import { Input } from "../../../components/input";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { UndecoratedLink } from "../../undecorated-link";
 
 export const CartItem = ({
     uniqueId,
@@ -34,7 +35,9 @@ export const CartItem = ({
             alignItems="center"
         >
             <Box width={[1, 1, 1 / 4]} px={[2, 6, 4]} mb={[4, 4, 0]}>
-                <Image src={image} />
+                <UndecoratedLink to={`/products/${uniqueId}`}>
+                    <Image src={image} />
+                </UndecoratedLink>
             </Box>
             <Box width={[1, 1, 3 / 4]} px={[2, 5, 4]}>
                 <Flex>

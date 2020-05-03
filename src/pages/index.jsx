@@ -15,7 +15,9 @@ const Index = () => {
                 ) {
                     edges {
                         node {
-                            id
+                            fields {
+                                slug
+                            }
                             frontmatter {
                                 name
                                 image {
@@ -36,7 +38,9 @@ const Index = () => {
                 ) {
                     edges {
                         node {
-                            id
+                            fields {
+                                slug
+                            }
                             frontmatter {
                                 name
                                 image {
@@ -61,7 +65,10 @@ const Index = () => {
                 <Categories
                     categories={categories.edges.reduce((categories, edge) => {
                         const { node } = edge;
-                        categories.push({ ...node.frontmatter, id: node.id });
+                        categories.push({
+                            ...node.frontmatter,
+                            slug: node.fields.slug,
+                        });
                         return categories;
                     }, [])}
                     truncatedText="Mostra tutte"
@@ -72,7 +79,10 @@ const Index = () => {
                 <Products
                     products={products.edges.reduce((products, edge) => {
                         const { node } = edge;
-                        products.push({ ...node.frontmatter, id: node.id });
+                        products.push({
+                            ...node.frontmatter,
+                            slug: node.fields.slug,
+                        });
                         return products;
                     }, [])}
                 />

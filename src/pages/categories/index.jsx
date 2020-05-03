@@ -14,7 +14,9 @@ const Categories = () => {
                 ) {
                     edges {
                         node {
-                            id
+                            fields {
+                                slug
+                            }
                             frontmatter {
                                 name
                                 image {
@@ -39,7 +41,10 @@ const Categories = () => {
                 <CategoryList
                     categories={categories.edges.reduce((categories, edge) => {
                         const { node } = edge;
-                        categories.push({ ...node.frontmatter, id: node.id });
+                        categories.push({
+                            ...node.frontmatter,
+                            slug: node.fields.slug,
+                        });
                         return categories;
                     }, [])}
                     truncatedText={

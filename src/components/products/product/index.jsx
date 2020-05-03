@@ -11,8 +11,8 @@ import {
 import { Flex, Box } from "reflexbox";
 import { UndecoratedLink } from "../../undecorated-link";
 
-export const Product = ({ id, name, image, price, currency }) => (
-    <UndecoratedLink to={`/products/${id}`}>
+export const Product = ({ slug, name, image, price, currency }) => (
+    <UndecoratedLink to={`/products/${slug}`}>
         <RootFlex flexDirection="column">
             <AbsoluteContainer>
                 <Image fluid={image.childImageSharp.fluid} />

@@ -8,8 +8,8 @@ import {
     DimensionedUndecoratedLink,
 } from "./styled";
 
-export const Category = ({ id, name, image }) => (
-    <DimensionedUndecoratedLink to={`/categories/${id}`}>
+export const Category = ({ slug, name, image }) => (
+    <DimensionedUndecoratedLink to={`/categories/${slug}`}>
         <RootFlex alignItems="flex-end">
             <BackgroundImage fluid={image.childImageSharp.fluid} />
             <Overlay />

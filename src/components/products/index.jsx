@@ -7,7 +7,7 @@ import { ContentCenteredCard } from "../content-centered-card";
 export const Products = ({ products, truncatedText }) => (
     <Flex m={-2}>
         {products.map((product) => (
-            <Box key={product.id} p={2} width={[1 / 2, 1 / 2, 1 / 3, 1 / 4]}>
+            <Box key={product.slug} p={2} width={[1 / 2, 1 / 2, 1 / 3, 1 / 4]}>
                 <Flex justifyContent="center" width="100%">
                     <Box justifyContent="center" width="100%">
                         <Product {...product} />

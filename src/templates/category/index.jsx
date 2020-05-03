@@ -7,8 +7,8 @@ import { Seo } from "../../components/seo";
 import { Products } from "../../components/products";
 
 export const pageQuery = graphql`
-    query($id: String!, $name: String!) {
-        category: markdownRemark(id: { eq: $id }) {
+    query($slug: String!, $name: String!) {
+        category: markdownRemark(fields: { slug: { eq: $slug } }) {
             frontmatter {
                 name
                 image {
@@ -25,7 +25,9 @@ export const pageQuery = graphql`
         ) {
             edges {
                 node {
-                    id
+                    fields {
+                        slug
+                    }
                     frontmatter {
                         name
                         image {
@@ -63,7 +65,10 @@ const Category = ({ data }) => {
                 <Products
                     products={products.edges.reduce((products, edge) => {
                         const { node } = edge;
-                        products.push({ ...node.frontmatter, id: node.id });
+                        products.push({
+                            ...node.frontmatter,
+                            slug: node.fields.slug,
+                        });
                         return products;
                     }, [])}
                     truncatedText={

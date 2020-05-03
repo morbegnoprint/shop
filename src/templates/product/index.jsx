@@ -14,9 +14,11 @@ import { useDispatch } from "react-redux";
 import { useSnipcartClient } from "../../hooks/cart";
 
 export const pageQuery = graphql`
-    query($id: String!, $categoryName: String!) {
-        product: markdownRemark(id: { eq: $id }) {
-            id
+    query($slug: String!, $categoryName: String!) {
+        product: markdownRemark(fields: { slug: { eq: $slug } }) {
+            fields {
+                slug
+            }
             frontmatter {
                 name
                 image {
@@ -38,15 +40,22 @@ export const pageQuery = graphql`
             }
         }
         category: markdownRemark(frontmatter: { name: { eq: $categoryName } }) {
-            id
+            fields {
+                slug
+            }
         }
     }
 `;
 
 const Product = ({ data }) => {
     const {
-        product: { id: productId, frontmatter },
-        category: { id: categoryId },
+        product: {
+            fields: { slug: productSlug },
+            frontmatter,
+        },
+        category: {
+            fields: { slug: categorySlug },
+        },
     } = data;
     const dispatch = useDispatch();
     const snipcartClient = useSnipcartClient();
@@ -65,9 +74,9 @@ const Product = ({ data }) => {
 
     useEffect(() => {
         setSnipcartItem({
-            id: productId,
+            id: productSlug,
             price: frontmatter.price,
-            url: `/products/${productId}`,
+            url: `/products/${productSlug}`,
             description: frontmatter.description,
             image: frontmatter.image.publicURL,
             name: frontmatter.name,
@@ -84,7 +93,7 @@ const Product = ({ data }) => {
                 []
             ),
         });
-    }, [frontmatter, productId, quantity]);
+    }, [frontmatter, productSlug, quantity]);
 
     useEffect(() => {
         setBuyable(
@@ -122,7 +131,7 @@ const Product = ({ data }) => {
                     { label: "Categorie", href: "/categories" },
                     {
                         label: frontmatter.category,
-                        href: `/categories/${categoryId}`,
+                        href: `/categories/${categorySlug}`,
                     },
                 ]}
             >

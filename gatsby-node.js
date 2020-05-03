@@ -1,5 +1,6 @@
 const path = require("path");
 const { fmImagesToRelative } = require("gatsby-remark-relative-images");
+const { createFilePath } = require("gatsby-source-filesystem");
 
 exports.createPages = async ({ actions, graphql }) => {
     const { createPage } = actions;
@@ -8,7 +9,9 @@ exports.createPages = async ({ actions, graphql }) => {
             allMarkdownRemark(limit: 1000) {
                 edges {
                     node {
-                        id
+                        fields {
+                            slug
+                        }
                         frontmatter {
                             type
                             collection
@@ -29,16 +32,19 @@ exports.createPages = async ({ actions, graphql }) => {
         .map((edge) => edge.node)
         .filter((node) => node.frontmatter.type !== "hidden")
         .forEach((node) => {
-            const { id, frontmatter } = node;
-            const context = { id };
+            const { fields, frontmatter } = node;
+            const context = { slug: fields.slug };
             if (frontmatter.type === "product") {
                 context.categoryName = frontmatter.category;
             }
             if (frontmatter.type === "category") {
                 context.name = frontmatter.name;
             }
+            console.log(
+                `creating page /${frontmatter.collection}/${fields.slug}`
+            );
             createPage({
-                path: `/${frontmatter.collection}/${id}`,
+                path: `/${frontmatter.collection}/${fields.slug}`,
                 component: path.resolve(
                     `src/templates/${frontmatter.type}/index.jsx`
                 ),
@@ -47,6 +53,20 @@ exports.createPages = async ({ actions, graphql }) => {
         });
 };
 
-exports.onCreateNode = ({ node }) => {
+exports.onCreateNode = ({ node, actions, getNode }) => {
     fmImagesToRelative(node);
+    if (node.internal.type === "MarkdownRemark") {
+        const { createNodeField } = actions;
+        const rawSlug = createFilePath({
+            node,
+            getNode,
+            trailingSlash: false,
+        });
+        const splitSlug = rawSlug.split("/");
+        createNodeField({
+            name: "slug",
+            node,
+            value: splitSlug[splitSlug.length - 1],
+        });
+    }
 };
