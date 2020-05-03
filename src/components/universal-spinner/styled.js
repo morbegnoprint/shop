@@ -1,6 +1,5 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { Flex } from "reflexbox";
-import { css } from "react-select/src/components/Control";
 
 export const SpinnerContainer = styled(Flex)`
     position: fixed;
@@ -9,14 +8,16 @@ export const SpinnerContainer = styled(Flex)`
     left: 0;
     right: 0;
     ${(props) =>
-        !props.open
+        props.open
             ? css`
-                  z-index: -1;
-                  opacity: 0;
-              `
-            : css`
-                  z-index: 20;
                   opacity: 1;
                   transition: opacity 0.3s ease;
+                  transform: translateY(0);
+                  z-index: 10000;
+              `
+            : css`
+                  opacity: 0;
+                  transition: transform 0.3s ease 0.3s, opacity 0.3s ease;
+                  transform: translateY(100000px);
               `}
 `;
