@@ -42,5 +42,5 @@ UniversalSpinner.propTypes = {
 };
 
 UniversalSpinner.defaultProps = {
-    timeout: 100,
+    timeout: 200,
 };
