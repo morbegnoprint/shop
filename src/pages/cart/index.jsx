@@ -23,10 +23,8 @@ const Cart = () => {
     );
 
     const debouncedItemUpdate = useMemo(() => {
-        const debounced = debounce((id, quantity) => {
-            dispatch(
-                updateSnipcartItem(snipcartClient, { uniqueId: id, quantity })
-            );
+        const debounced = debounce((updatedItem) => {
+            dispatch(updateSnipcartItem(snipcartClient, updatedItem));
         }, 500);
         debounced.id = Date.now();
         return debounced;
@@ -56,10 +54,34 @@ const Cart = () => {
                     if (updatedItem.quantity !== parsedValue) {
                         updatedItem.quantity = parsedValue;
                         setItems([...items]);
-                        debouncedItemUpdate(id, quantity);
+                        debouncedItemUpdate({ uniqueId: id, quantity });
                     }
                 }
             }
+        },
+        [debouncedItemUpdate, items]
+    );
+
+    const handleCustomFieldChange = useCallback(
+        (id, fieldName, value) => {
+            const updatedItemIndex = items.findIndex(
+                (item) => item.uniqueId === id
+            );
+            if (updatedItemIndex < 0) {
+                console.warn("updating non-existent item");
+                return;
+            }
+            const updatedItem = items[updatedItemIndex];
+            const updatedItemCustomFields = updatedItem.customFields;
+            const updatedCustomFieldIndex = updatedItemCustomFields.findIndex(
+                (customField) => customField.name === fieldName
+            );
+            updatedItem.customFields[updatedCustomFieldIndex].value = value;
+            setItems([...items]);
+            debouncedItemUpdate({
+                uniqueId: id,
+                customFields: updatedItemCustomFields,
+            });
         },
         [debouncedItemUpdate, items]
     );
@@ -83,6 +105,7 @@ const Cart = () => {
                                 {...item}
                                 onRemove={handleRemove}
                                 onQuantityChange={handleQuantityChange}
+                                onCustomFieldChange={handleCustomFieldChange}
                             />
                         );
                     })
