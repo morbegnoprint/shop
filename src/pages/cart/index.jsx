@@ -115,9 +115,6 @@ const Cart = () => {
                         alignItems="center"
                         flexDirection="column"
                     >
-                        <Box fontSize={32} textAlign="center" mb={4}>
-                            ¯\_(ツ)_/¯
-                        </Box>
                         <Box fontSize={20} textAlign="center">
                             Non c'è ancora nulla qui!
                         </Box>
