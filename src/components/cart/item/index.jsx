@@ -56,9 +56,6 @@ export const CartItem = ({
                             <Box mb={3}>
                                 <Subtitle>{name}</Subtitle>
                             </Box>
-                            <Box mb={3}>
-                                <Subtitle>Descrizione</Subtitle>
-                            </Box>
                             <Box mb={3}>{description}</Box>
                             {customFields.map((customField) => {
                                 return (

@@ -160,9 +160,6 @@ const Product = ({ data }) => {
                         >
                             <Box mb={4}>
                                 <Flex flexDirection="column">
-                                    <Box mb={3}>
-                                        <Subtitle>Descrizione</Subtitle>
-                                    </Box>
                                     <Box mb={4}>{frontmatter.description}</Box>
                                     {frontmatter.attributes.map((attribute) => (
                                         <Flex
