@@ -1,11 +1,13 @@
 .toast-root {
     width: auto;
-    margin-top: 64px;
+    margin-top: 76px;
 }
 
 @media (max-width: 600px) {
     .toast-root {
         width: 100vw;
+        display: flex;
+        justify-content: center;
     }
 }
 
