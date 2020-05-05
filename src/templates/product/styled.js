@@ -11,3 +11,9 @@ export const Image = styled(GatsbyImage)`
 export const Subtitle = styled.h4`
     margin-bottom: 0;
 `;
+
+export const Price = styled.span`
+    color: #f07d02;
+    font-size: 36px;
+    font-weight: 700;
+`;

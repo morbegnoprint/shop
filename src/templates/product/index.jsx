@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import { Layout } from "../../components/layout";
 import { Section } from "../../components/section";
 import { Flex, Box } from "reflexbox";
-import { Image, Subtitle } from "./styled";
+import { Image, Subtitle, Price } from "./styled";
 import { Button } from "../../components/button";
 import { Select } from "../../components/select";
 import { Seo } from "../../components/seo";
@@ -65,10 +65,10 @@ const Product = ({ data }) => {
     const [quantity, setQuantity] = useState("");
     const [buyable, setBuyable] = useState(false);
 
-    const getAttributesChangeHandler = (attributeName) => ({ value }) => {
+    const getAttributesChangeHandler = (attributeName) => (newValue) => {
         setAttributes({
             ...attributes,
-            [attributeName]: value,
+            [attributeName]: newValue,
         });
     };
 
@@ -82,18 +82,22 @@ const Product = ({ data }) => {
             name: frontmatter.name,
             categories: [frontmatter.category],
             quantity: quantity,
+            metadata: { slug: productSlug },
             customFields: frontmatter.attributes.reduce(
                 (customFields, attribute, index) => {
                     customFields.push({
                         name: attribute.name,
-                        options: attribute.options,
+                        options: attribute.options.join("|"),
+                        value:
+                            attributes[attribute.name] &&
+                            attributes[attribute.name].value,
                     });
                     return customFields;
                 },
                 []
             ),
         });
-    }, [frontmatter, productSlug, quantity]);
+    }, [attributes, frontmatter, productSlug, quantity]);
 
     useEffect(() => {
         setBuyable(
@@ -180,6 +184,11 @@ const Product = ({ data }) => {
                                                             index,
                                                         })
                                                     )}
+                                                    value={
+                                                        attributes[
+                                                            attribute.name
+                                                        ] || null
+                                                    }
                                                     onChange={getAttributesChangeHandler(
                                                         attribute.name
                                                     )}
@@ -197,19 +206,14 @@ const Product = ({ data }) => {
                                             onChange={handleQuantityChange}
                                         />
                                     </Box>
-                                    <Box
-                                        textAlign={[
-                                            "center",
-                                            "center",
-                                            "initial",
-                                        ]}
-                                        color="#f07d02"
-                                        fontSize={36}
-                                        fontWeight={700}
-                                    >
-                                        {frontmatter.price}{" "}
-                                        {frontmatter.currency}
-                                    </Box>
+                                    <Flex alignItems="center">
+                                        <Box mr={3}>Totale:</Box>
+                                        <Box>
+                                            <Price>
+                                                {frontmatter.price * quantity} €
+                                            </Price>
+                                        </Box>
+                                    </Flex>
                                 </Flex>
                             </Box>
                             <Box>
