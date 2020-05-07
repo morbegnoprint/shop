@@ -124,9 +124,7 @@ export const initializePaymentSession = (client) => async (
 ) => {
     dispatch(postLoading());
     try {
-        const session = await client.api.cart.initializePaymentSession(
-            `${window.location.origin}`
-        );
+        const session = await client.api.cart.initializePaymentSession();
         dispatch(initializePaymentSessionSuccess(session));
     } catch (error) {
         console.error(error);

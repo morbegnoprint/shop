@@ -23,7 +23,6 @@ export const PaymentMethod = () => {
             state.snipcart.paymentSession.data.availablePaymentMethods
     );
     const paymentForm = useSelector((state) => state.snipcart.paymentForm);
-    console.log(paymentForm);
 
     useEffect(() => {
         dispatch(resetPaymentMethod());

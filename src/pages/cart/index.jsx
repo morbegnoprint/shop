@@ -23,7 +23,6 @@ const Cart = () => {
 
     const handleDataFormProceed = useCallback(
         (shippingData) => {
-            console.log(shippingData);
             dispatch(
                 updateSnipcartCart(snipcartClient, {
                     email: shippingData.email,
