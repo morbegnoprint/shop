@@ -1,16 +1,11 @@
 import React, { useState } from "react";
-import {
-    Container,
-    StyledIcon,
-    AnimatedMobileMenu,
-    Item,
-    VerticalDivider,
-} from "./styled";
+import { Container, StyledIcon, AnimatedMobileMenu, Item } from "./styled";
 import { useStaticQuery, graphql, Link } from "gatsby";
 import Image from "gatsby-image";
 import { faBars, faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 import { Flex, Box } from "reflexbox";
 import { UndecoratedLink } from "../../undecorated-link";
+import { VerticalDivider } from "../../vertical-divider";
 
 export const Toolbar = () => {
     const { logoImage } = useStaticQuery(graphql`

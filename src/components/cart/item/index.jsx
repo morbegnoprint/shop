@@ -1,10 +1,11 @@
 import React, { useCallback } from "react";
 import PropTypes from "prop-types";
 import { Flex, Box } from "reflexbox";
-import { Image, Subtitle, Price, VerticalDivider, RemoveText } from "./styled";
+import { Image, Subtitle, Price, RemoveText } from "./styled";
 import { Input } from "../../../components/input";
 import { UndecoratedLink } from "../../undecorated-link";
 import { Select } from "../../select";
+import { VerticalDivider } from "../../vertical-divider";
 
 export const CartItem = ({
     uniqueId,

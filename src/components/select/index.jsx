@@ -1,5 +1,7 @@
 import React from "react";
 import ReactSelect from "react-select";
+import { Flex, Box } from "reflexbox";
+import { Label } from "./styled";
 
 const customStyles = {
     control: () => ({
@@ -28,14 +30,14 @@ const customStyles = {
             borderTopLeftRadius: state.data.index === 0 ? "24px" : "0",
             borderTopRightRadius: state.data.index === 0 ? "24px" : "0",
             borderBottomLeftRadius:
-            state.data.index === state.options.length - 1 && "24px",
+                state.data.index === state.options.length - 1 && "24px",
             borderBottomRightRadius:
-            state.data.index === state.options.length - 1 && "24px",
+                state.data.index === state.options.length - 1 && "24px",
             padding: "16px 24px",
             background,
             transition: "background .2s ease",
             "&:active": {
-                background: "rgba(240, 125, 2, 0.4)"
+                background: "rgba(240, 125, 2, 0.4)",
             },
         };
     },
@@ -60,6 +62,15 @@ const customStyles = {
     }),
 };
 
-export const Select = (props) => (
-    <ReactSelect {...props} styles={customStyles} isSearchable={false} />
+export const Select = ({ label, ...rest }) => (
+    <Flex flexDirection="column">
+        {label && (
+            <Box mb={3}>
+                <Label>{label}</Label>
+            </Box>
+        )}
+        <Box>
+            <ReactSelect {...rest} styles={customStyles} isSearchable={false} />
+        </Box>
+    </Flex>
 );

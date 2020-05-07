@@ -17,12 +17,6 @@ export const Price = styled.span`
     font-weight: 700;
 `;
 
-export const VerticalDivider = styled.div`
-    width: 1px;
-    background: rgba(0, 0, 0, 0.4);
-    height: 24px;
-`;
-
 export const RemoveText = styled.span`
     color: #f07d02;
     font-weight: 700;

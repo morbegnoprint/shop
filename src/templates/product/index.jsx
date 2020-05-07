@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import { Layout } from "../../components/layout";
 import { Section } from "../../components/section";
 import { Flex, Box } from "reflexbox";
-import { Image, Subtitle, Price } from "./styled";
+import { Image, Price } from "./styled";
 import { Button } from "../../components/button";
 import { Select } from "../../components/select";
 import { Seo } from "../../components/seo";
@@ -76,7 +76,7 @@ const Product = ({ data }) => {
         setSnipcartItem({
             id: productSlug,
             price: frontmatter.price,
-            url: `/products/${productSlug}`,
+            url: `${window.location.origin}/products/${productSlug}`,
             description: frontmatter.description,
             image: frontmatter.image.publicURL,
             name: frontmatter.name,
@@ -166,13 +166,9 @@ const Product = ({ data }) => {
                                             key={attribute.name}
                                             flexDirection="column"
                                         >
-                                            <Box mb={3}>
-                                                <Subtitle>
-                                                    {attribute.name}
-                                                </Subtitle>
-                                            </Box>
                                             <Box mb={4}>
                                                 <Select
+                                                    label={attribute.name}
                                                     placeholder="Seleziona..."
                                                     options={attribute.options.map(
                                                         (option, index) => ({
@@ -193,11 +189,9 @@ const Product = ({ data }) => {
                                             </Box>
                                         </Flex>
                                     ))}
-                                    <Box mb={3}>
-                                        <Subtitle>Quantità</Subtitle>
-                                    </Box>
                                     <Box mb={4}>
                                         <Input
+                                            label="Quantità"
                                             placeholder="1, 10, 100..."
                                             value={quantity}
                                             onChange={handleQuantityChange}
