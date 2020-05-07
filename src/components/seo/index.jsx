@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 import { Helmet } from "react-helmet";
 import { useStaticQuery, graphql } from "gatsby";
@@ -41,6 +41,16 @@ export const Seo = ({ description, lang, meta, title, link }) => {
 
     const metaDescription = description || site.siteMetadata.description;
 
+    useEffect(() => {
+        if (window.Snipcart) {
+            window.Snipcart.api.session.setLanguage("it");
+        } else {
+            document.addEventListener("snipcart.ready", () => {
+                window.Snipcart.api.session.setLanguage("it");
+            });
+        }
+    }, []);
+
     return (
         <Helmet
             htmlAttributes={{
@@ -71,16 +81,12 @@ export const Seo = ({ description, lang, meta, title, link }) => {
                         "https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap",
                     rel: "stylesheet",
                 },
-            ].concat(link)}
-            script={[
                 {
-                    src:
-                        "https://cdn.snipcart.com/themes/v3.0.12/default/snipcart.js",
-                    id: "snipcart",
-                    "data-api-key":
-                        "MTcyMDQxNzUtY2Q4ZS00MmNhLTk2MTEtZjY3MTM1MjFjZDRkNjM3MjQwMTAyODQ4MTE2ODE3",
+                    href:
+                        "https://cdn.snipcart.com/themes/v3.0.12/default/snipcart.css",
+                    rel: "stylesheet",
                 },
-            ]}
+            ].concat(link)}
             meta={[
                 {
                     name: "viewport",

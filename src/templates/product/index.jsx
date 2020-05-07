@@ -9,9 +9,6 @@ import { Button } from "../../components/button";
 import { Select } from "../../components/select";
 import { Seo } from "../../components/seo";
 import { Input } from "../../components/input";
-import { addItemToSnipcart } from "../../actions/snipcart";
-import { useDispatch } from "react-redux";
-import { useSnipcartClient } from "../../hooks/cart";
 
 export const pageQuery = graphql`
     query($slug: String!, $categoryName: String!) {
@@ -57,12 +54,9 @@ const Product = ({ data }) => {
             fields: { slug: categorySlug },
         },
     } = data;
-    const dispatch = useDispatch();
-    const snipcartClient = useSnipcartClient();
 
     const [attributes, setAttributes] = useState({});
     const [snipcartItem, setSnipcartItem] = useState({});
-    const [snipcartCrawlerItem, setSnipcartCrawlerItem] = useState({});
     const [quantity, setQuantity] = useState("");
     const [buyable, setBuyable] = useState(false);
 
@@ -74,58 +68,26 @@ const Product = ({ data }) => {
     };
 
     useEffect(() => {
-        const {
-            price,
-            description,
-            category,
-            name,
-            attributes: frontmatterAttributes,
-            image,
-        } = frontmatter;
-        const url = `/products/${productSlug}`;
-        const customFields = frontmatterAttributes.reduce(
-            (customFields, attribute, index) => {
-                customFields.push({
-                    name: attribute.name,
-                    options: attribute.options.join("|"),
-                    value:
-                        attributes[attribute.name] &&
-                        attributes[attribute.name].value,
-                });
-                return customFields;
-            },
-            []
-        );
         setSnipcartItem({
-            id: productSlug,
-            price,
-            url,
-            image: image.publicURL,
-            description,
-            name,
-            categories: [category],
-            quantity: quantity,
-            metadata: { slug: productSlug },
-            customFields,
-        });
-        setSnipcartCrawlerItem({
             "data-item-id": productSlug,
-            "data-item-price": price,
-            "data-item-url": url,
-            "data-item-image": image.publicURL,
-            "data-item-description": description,
-            "data-item-name": name,
-            "data-item-categories": `${category}`,
-            ...customFields.reduce(
-                (reducedCustomFields, customField, index) => {
-                    reducedCustomFields[`data-item-custom${index + 1}-name`] =
-                        customField.name;
-                    reducedCustomFields[
+            "data-item-price": frontmatter.price,
+            "data-item-url": `/products/${productSlug}`,
+            "data-item-image": frontmatter.image.publicURL,
+            "data-item-description": frontmatter.description,
+            "data-item-name": frontmatter.name,
+            "data-item-quantity": quantity,
+            "data-item-categories": frontmatter.category,
+            ...frontmatter.attributes.reduce(
+                (customFields, attribute, index) => {
+                    customFields[`data-item-custom${index + 1}-name`] =
+                        attribute.name;
+                    customFields[
                         `data-item-custom${index + 1}-options`
-                    ] = customField.options;
-                    reducedCustomFields[`data-item-custom${index + 1}-value`] =
-                        customField.value;
-                    return reducedCustomFields;
+                    ] = attribute.options.join("|");
+                    customFields[`data-item-custom${index + 1}-value`] =
+                        attributes[attribute.name] &&
+                        attributes[attribute.name].value;
+                    return customFields;
                 },
                 {}
             ),
@@ -150,10 +112,6 @@ const Product = ({ data }) => {
             }
         }
     }, []);
-
-    const handleAddItemToSnipcart = useCallback(() => {
-        dispatch(addItemToSnipcart(snipcartClient, snipcartItem));
-    }, [dispatch, snipcartClient, snipcartItem]);
 
     return (
         <Layout>
@@ -243,9 +201,8 @@ const Product = ({ data }) => {
                             <Box>
                                 <Button
                                     className="snipcart-add-item"
-                                    {...snipcartCrawlerItem}
+                                    {...snipcartItem}
                                     disabled={!buyable}
-                                    onClick={handleAddItemToSnipcart}
                                 >
                                     Aggiungi al carrello
                                 </Button>

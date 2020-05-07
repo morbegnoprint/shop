@@ -4,6 +4,9 @@ import { Layout } from "../../components/layout";
 import { useStaticQuery, graphql } from "gatsby";
 import { Categories as CategoryList } from "../../components/categories";
 import { Section } from "../../components/section";
+import { Flex, Box } from "reflexbox";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faExclamationTriangle } from "@fortawesome/free-solid-svg-icons";
 
 const Categories = () => {
     const { categories } = useStaticQuery(
@@ -48,10 +51,12 @@ const Categories = () => {
                         return categories;
                     }, [])}
                     truncatedText={
-                        <>
-                            <p>Non c'è più nulla qui</p>
-                            <p>¯\_(ツ)_/¯</p>
-                        </>
+                        <Flex flexDirection="column">
+                            <Box mb={3} fontSize={32}>
+                                <FontAwesomeIcon icon={faExclamationTriangle} />
+                            </Box>
+                            <Box>Non c'è più nulla qui</Box>
+                        </Flex>
                     }
                 />
             </Section>

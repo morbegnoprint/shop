@@ -12,10 +12,10 @@ export const RootFlex = styled(Flex)`
     color: #fff;
     background: ${props => {
         if (props.type === "facebook") {
-            return props.theme.colors.facebook;
+            return "#49659f";
         }
         if (props.type === "instagram") {
-            return props.theme.colors.instagram;
+            return "#c13584";
         }
     }};
     transition: box-shadow ease 0.3s;

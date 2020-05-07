@@ -22,9 +22,22 @@ export const StyledIcon = styled(FontAwesomeIcon)`
 `;
 
 export const UnstyledButton = styled.button`
+    position: relative;
     border: none;
     outline: none;
     background: transparent;
+`;
+
+export const CartItemsCountContainer = styled.span`
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    padding: 4px;
+    font-size: 12px;
+    line-height: 12px;
+    background: #f07d02;
+    color: #fff;
+    border-radius: 100%;
 `;
 
 export const AnimatedMobileMenu = styled(MobileMenu)`
