@@ -56,7 +56,9 @@ const Product = ({ data }) => {
     } = data;
 
     const [attributes, setAttributes] = useState({});
-    const [snipcartItem, setSnipcartItem] = useState({});
+    const [snipcartCustomAttributes, setSnipcartCustomAttributes] = useState(
+        {}
+    );
     const [quantity, setQuantity] = useState("");
     const [buyable, setBuyable] = useState(false);
 
@@ -68,15 +70,7 @@ const Product = ({ data }) => {
     };
 
     useEffect(() => {
-        setSnipcartItem({
-            "data-item-id": productSlug,
-            "data-item-price": frontmatter.price,
-            "data-item-url": `/products/${productSlug}`,
-            "data-item-image": frontmatter.image.publicURL,
-            "data-item-description": frontmatter.description,
-            "data-item-name": frontmatter.name,
-            "data-item-quantity": quantity,
-            "data-item-categories": frontmatter.category,
+        setSnipcartCustomAttributes({
             ...frontmatter.attributes.reduce(
                 (customFields, attribute, index) => {
                     customFields[`data-item-custom${index + 1}-name`] =
@@ -201,7 +195,19 @@ const Product = ({ data }) => {
                             <Box>
                                 <Button
                                     className="snipcart-add-item"
-                                    {...snipcartItem}
+                                    {...snipcartCustomAttributes}
+                                    data-item-id={productSlug}
+                                    data-item-price={frontmatter.price}
+                                    data-item-url={`/products/${productSlug}`}
+                                    data-item-image={
+                                        frontmatter.image.publicURL
+                                    }
+                                    data-item-description={
+                                        frontmatter.description
+                                    }
+                                    data-item-name={frontmatter.name}
+                                    data-item-quantity={quantity}
+                                    data-item-categories={frontmatter.category}
                                     disabled={!buyable}
                                 >
                                     Aggiungi al carrello
