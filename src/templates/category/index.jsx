@@ -34,6 +34,7 @@ export const pageQuery = graphql`
                     frontmatter {
                         name
                         image {
+                            publicURL
                             childImageSharp {
                                 fluid {
                                     ...GatsbyImageSharpFluid
@@ -57,7 +58,11 @@ const Category = ({ data }) => {
 
     return (
         <Layout>
-            <Seo title={frontmatter.name} />
+            <Seo
+                title={frontmatter.name}
+                image={frontmatter.image.publicURL}
+                description={frontmatter.description}
+            />
             <Section
                 title={frontmatter.name}
                 breadcrumbs={[

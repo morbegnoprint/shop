@@ -110,8 +110,9 @@ const Product = ({ data }) => {
     return (
         <Layout>
             <Seo
-                description={frontmatter.description}
                 title={frontmatter.name}
+                image={frontmatter.image.publicURL}
+                description={frontmatter.description}
             />
             <Section
                 title={frontmatter.name}
