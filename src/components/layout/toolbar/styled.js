@@ -35,6 +35,7 @@ export const CartItemsCountContainer = styled.span`
     font-size: 12px;
     line-height: 12px;
     color: #f07d02;
+    font-weight: 700;
 `;
 
 export const AnimatedMobileMenu = styled(MobileMenu)`
