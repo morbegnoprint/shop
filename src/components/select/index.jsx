@@ -48,7 +48,7 @@ const customStyles = {
     }),
     placeholder: (provided, state) => ({
         ...provided,
-        color: "rgba(0, 0, 0, 0.5)",
+        color: "rgba(0, 0, 0, 0.4)",
     }),
     indicatorSeparator: () => ({
         display: "none",
