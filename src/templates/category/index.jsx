@@ -5,6 +5,9 @@ import { Layout } from "../../components/layout";
 import { Section } from "../../components/section";
 import { Seo } from "../../components/seo";
 import { Products } from "../../components/products";
+import { Flex, Box } from "reflexbox";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faExclamationTriangle } from "@fortawesome/free-solid-svg-icons";
 
 export const pageQuery = graphql`
     query($slug: String!, $name: String!) {
@@ -72,10 +75,12 @@ const Category = ({ data }) => {
                         return products;
                     }, [])}
                     truncatedText={
-                        <>
-                            <p>Non c'è più nulla qui</p>
-                            <p>¯\_(ツ)_/¯</p>
-                        </>
+                        <Flex flexDirection="column">
+                            <Box mb={3} fontSize={32}>
+                                <FontAwesomeIcon icon={faExclamationTriangle} />
+                            </Box>
+                            <Box>Non c'è più nulla qui</Box>
+                        </Flex>
                     }
                 />
             </Section>
