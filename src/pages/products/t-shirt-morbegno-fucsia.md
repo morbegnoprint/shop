@@ -10,6 +10,8 @@ attributes:
       - M
       - L
 category: T-shirt
+type: product
+collection: products
 price: 12
 currency: €
 ---
