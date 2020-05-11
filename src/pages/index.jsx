@@ -11,6 +11,7 @@ const Index = () => {
         graphql`
             query {
                 products: allMarkdownRemark(
+                    limit: 4
                     filter: { frontmatter: { type: { eq: "product" } } }
                 ) {
                     edges {
@@ -34,6 +35,7 @@ const Index = () => {
                     }
                 }
                 categories: allMarkdownRemark(
+                    limit: 3
                     filter: { frontmatter: { type: { eq: "category" } } }
                 ) {
                     edges {

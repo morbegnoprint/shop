@@ -5,7 +5,7 @@ import { Category } from "./category";
 import { ContentCenteredCard } from "../content-centered-card";
 
 export const Categories = ({ categories, truncatedText, truncatedHref }) => (
-    <Flex m={-2}>
+    <Flex m={-2} flexWrap="wrap">
         {categories.map((category) => (
             <Box key={category.slug} p={2} width={[1 / 2, 1 / 2, 1 / 3, 1 / 4]}>
                 <Flex justifyContent="center" width="100%">
