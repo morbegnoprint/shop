@@ -61,6 +61,7 @@ const Product = ({ data }) => {
     );
     const [quantity, setQuantity] = useState("");
     const [buyable, setBuyable] = useState(false);
+    const [additionalPrice, setAdditionalPrice] = useState(0);
 
     const getAttributesChangeHandler = (attributeName) => (newValue) => {
         setAttributes({
@@ -94,6 +95,22 @@ const Product = ({ data }) => {
                 frontmatter.attributes.length === Object.keys(attributes).length
         );
     }, [frontmatter, attributes, quantity]);
+
+    useEffect(() => {
+        setAdditionalPrice(
+            Object.values(attributes)
+                .map((attribute) => attribute.value)
+                .reduce((additionalPrice, attribute) => {
+                    const splitAttribute = attribute.split("[");
+                    if (splitAttribute.length <= 1) {
+                        return additionalPrice;
+                    }
+                    return (additionalPrice += parseInt(
+                        splitAttribute[1].replace(/\].*/, "")
+                    ));
+                }, 0)
+        );
+    }, [attributes]);
 
     const handleQuantityChange = useCallback((event) => {
         const rawValue = event.target.value;
@@ -158,7 +175,10 @@ const Product = ({ data }) => {
                                                     placeholder="Seleziona..."
                                                     options={attribute.options.map(
                                                         (option, index) => ({
-                                                            label: option,
+                                                            label: option.replace(
+                                                                /\[.*\]$/,
+                                                                ""
+                                                            ),
                                                             value: option,
                                                             index,
                                                         })
@@ -187,7 +207,10 @@ const Product = ({ data }) => {
                                         <Box mr={3}>Totale:</Box>
                                         <Box>
                                             <Price>
-                                                {frontmatter.price * quantity} €
+                                                {(frontmatter.price +
+                                                    additionalPrice) *
+                                                    quantity}{" "}
+                                                €
                                             </Price>
                                         </Box>
                                     </Flex>
