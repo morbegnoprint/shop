@@ -79,9 +79,14 @@ const Product = ({ data }) => {
                     customFields[
                         `data-item-custom${index + 1}-options`
                     ] = attribute.options.join("|");
-                    customFields[`data-item-custom${index + 1}-value`] =
+                    const value =
                         attributes[attribute.name] &&
                         attributes[attribute.name].value;
+                    if (value) {
+                        customFields[
+                            `data-item-custom${index + 1}-value`
+                        ] = removeAdditionalPriceModifier(value);
+                    }
                     return customFields;
                 },
                 {}
@@ -123,6 +128,9 @@ const Product = ({ data }) => {
             }
         }
     }, []);
+
+    const removeAdditionalPriceModifier = (value) =>
+        value.replace(/\[.*\]$/, "");
 
     return (
         <Layout>
@@ -175,9 +183,8 @@ const Product = ({ data }) => {
                                                     placeholder="Seleziona..."
                                                     options={attribute.options.map(
                                                         (option, index) => ({
-                                                            label: option.replace(
-                                                                /\[.*\]$/,
-                                                                ""
+                                                            label: removeAdditionalPriceModifier(
+                                                                option
                                                             ),
                                                             value: option,
                                                             index,
