@@ -77,7 +77,7 @@ const Index = () => {
                     truncatedHref="/categories"
                 />
             </Section>
-            <Section title="I nostri prodotti" fullWidth>
+            <Section title="Alcuni nostri prodotti" fullWidth>
                 <Products
                     products={products.edges.reduce((products, edge) => {
                         const { node } = edge;

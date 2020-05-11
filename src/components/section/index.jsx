@@ -12,7 +12,11 @@ export const Section = ({ title, breadcrumbs, children }) => (
             width={["90%", "80%", "70%", "60%"]}
         >
             {title && (
-                <Box fontWeight={700} mb={breadcrumbs ? 1 : 4}>
+                <Box
+                    fontWeight={700}
+                    textAlign="center"
+                    mb={breadcrumbs ? 1 : 4}
+                >
                     <Title>{title}</Title>
                 </Box>
             )}
