@@ -12,7 +12,7 @@ locale: "it"
 collections:
     - name: "categories"
       identifier_field: "name"
-      label: "categorie"
+      label: "Categorie"
       label_singular: "categoria"
       folder: "src/pages/categories"
       create: true
@@ -34,7 +34,7 @@ collections:
             default: "categories"
     - name: "products"
       identifier_field: "name"
-      label: "prodotti"
+      label: "Prodotti"
       label_singular: "prodotto"
       folder: "src/pages/products"
       create: true
