@@ -32,8 +32,8 @@ export const CartItemsCountContainer = styled.span`
     position: absolute;
     bottom: 0;
     right: 0;
-    font-size: 12px;
-    line-height: 12px;
+    font-size: 16px;
+    line-height: 16px;
     color: #f07d02;
     font-weight: 700;
 `;
