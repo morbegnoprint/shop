@@ -210,7 +210,13 @@ const Product = ({ data }) => {
                                             onChange={handleQuantityChange}
                                         />
                                     </Box>
-                                    <Flex alignItems="center">
+                                    <Flex
+                                        alignItems="center"
+                                        justifyContent={[
+                                            "center",
+                                            "flex-start",
+                                        ]}
+                                    >
                                         <Box mr={3}>Totale:</Box>
                                         <Box>
                                             <Price>
