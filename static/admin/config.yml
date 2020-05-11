@@ -12,8 +12,8 @@ locale: "it"
 collections:
     - name: "categories"
       identifier_field: "name"
-      label: "Categories"
-      label_singular: "Category"
+      label: "categorie"
+      label_singular: "categoria"
       folder: "src/pages/categories"
       create: true
       slug: "{{slug}}"
@@ -34,8 +34,8 @@ collections:
             default: "categories"
     - name: "products"
       identifier_field: "name"
-      label: "Products"
-      label_singular: "Product"
+      label: "prodotti"
+      label_singular: "prodotto"
       folder: "src/pages/products"
       create: true
       slug: "{{slug}}"
