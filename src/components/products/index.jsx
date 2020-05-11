@@ -5,9 +5,9 @@ import { Product } from "./product";
 import { ContentCenteredCard } from "../content-centered-card";
 
 export const Products = ({ products, truncatedText }) => (
-    <Flex m={-2} flexWrap="wrap">
+    <Flex m={-3} flexWrap="wrap">
         {products.map((product) => (
-            <Box key={product.slug} p={2} width={[1 / 2, 1 / 2, 1 / 3, 1 / 4]}>
+            <Box key={product.slug} p={3} width={[1 / 2, 1 / 2, 1 / 3, 1 / 4]}>
                 <Flex justifyContent="center" width="100%">
                     <Box justifyContent="center" width="100%">
                         <Product {...product} />
@@ -16,7 +16,7 @@ export const Products = ({ products, truncatedText }) => (
             </Box>
         ))}
         {truncatedText && (
-            <Box p={2} width={[1 / 2, 1 / 2, 1 / 3, 1 / 4]}>
+            <Box p={3} width={[1 / 2, 1 / 2, 1 / 3, 1 / 4]}>
                 <Flex justifyContent="center">
                     <Flex justifyContent="center" width="100%">
                         <Box justifyContent="center" width="100%">
