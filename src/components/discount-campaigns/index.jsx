@@ -23,7 +23,7 @@ export const DiscountCampaigns = ({ discountCampaigns }) => (
                     <DescriptionContainer
                         p={24}
                         fontSize={24}
-                        width={["70%", "60%", "50%", "40%"]}
+                        width={["80%", "70%", "60%", "50%"]}
                     >
                         <StyledReactMarkdown
                             source={discountCampaign.description}
