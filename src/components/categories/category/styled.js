@@ -32,6 +32,10 @@ export const NameBox = styled(Box)`
     position: absolute;
     bottom: 24px;
     left: 24px;
+    right: 24px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 `;
 
 export const DimensionedUndecoratedLink = styled(UndecoratedLink)``;
