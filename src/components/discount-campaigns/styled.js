@@ -14,7 +14,7 @@ export const Overlay = styled.div`
     right: 0px;
     bottom: 0px;
     left: 0px;
-    background: rgba(0, 0, 0, 0.7);
+    background: rgba(0, 0, 0, 0.4);
 `;
 
 export const SlideRoot = styled(Flex)`

@@ -5,8 +5,8 @@ import {
     SlideRoot,
     DescriptionContainer,
     StyledReactMarkdown,
+    Overlay,
 } from "./styled";
-import { Overlay } from "../categories/category/styled";
 
 export const DiscountCampaigns = ({ discountCampaigns }) => (
     <RootSlider>
