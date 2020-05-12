@@ -31,6 +31,7 @@ export const DescriptionContainer = styled(Box)`
 
 export const StyledReactMarkdown = styled(ReactMarkdown)`
     line-height: 28px;
+    text-align: center;
     & > p:last-child {
         margin-bottom: 0;
     }
