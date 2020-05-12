@@ -43,4 +43,5 @@ export const InfoContainer = styled.div`
     bottom: 0;
     left: 0;
     right: 0;
+    border-top: solid 1px rgba(0, 0, 0, 0.1);
 `;
