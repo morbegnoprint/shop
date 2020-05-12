@@ -24,6 +24,7 @@ export const Product = ({ slug, name, image, price }) => (
                             fontSize={20}
                             fontWeight={700}
                             overflow="hidden"
+                            lineHeight="24px"
                             mb={2}
                         >
                             <Name>{name}</Name>
