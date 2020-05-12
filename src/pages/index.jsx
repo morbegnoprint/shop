@@ -56,18 +56,15 @@ const Index = () => {
                     }
                 }
                 discountCampaigns: allMarkdownRemark(
-                    limit: 3
                     filter: {
                         frontmatter: { type: { eq: "discount-campaign" } }
                     }
                 ) {
                     edges {
                         node {
-                            fields {
-                                slug
-                            }
                             frontmatter {
                                 name
+                                expireDate
                                 image {
                                     childImageSharp {
                                         fluid(quality: 90) {
