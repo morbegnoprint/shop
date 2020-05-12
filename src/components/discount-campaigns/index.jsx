@@ -13,8 +13,7 @@ export const DiscountCampaigns = ({ discountCampaigns }) => (
         {discountCampaigns.map((discountCampaign) => (
             <div>
                 <SlideRoot
-                    p={32}
-                    height="85vh"
+                    minHeight="85vh"
                     backgroundUrl={discountCampaign.image.publicURL}
                     justifyContent="center"
                     alignItems="center"

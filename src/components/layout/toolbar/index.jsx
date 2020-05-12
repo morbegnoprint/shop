@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
     Container,
     StyledIcon,
@@ -30,7 +30,21 @@ export const Toolbar = () => {
         }
     `);
 
+    const [hero, setHero] = useState(
+        !(typeof window !== "undefined" && window.pageYOffset)
+    );
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+    useEffect(() => {
+        window.addEventListener("scroll", handleScroll);
+        return () => {
+            window.removeEventListener("scroll", handleScroll);
+        };
+    }, []);
+
+    const handleScroll = () => {
+        setHero(!window.pageYOffset);
+    };
 
     const handleMobileMenuOpen = () => {
         setMobileMenuOpen(true);
@@ -46,7 +60,11 @@ export const Toolbar = () => {
                 open={mobileMenuOpen}
                 onClose={handleMobileMenuClose}
             />
-            <Container alignItems="center" justifyContent="space-between">
+            <Container
+                alignItems="center"
+                justifyContent="space-between"
+                hero={hero}
+            >
                 <Box>
                     <Link to="/">
                         <Image
@@ -64,39 +82,40 @@ export const Toolbar = () => {
                         <Item to="/categories">Categorie</Item>
                     </Box>
                     <Box px={2}>
-                        <VerticalDivider />
+                        <VerticalDivider hero={hero} />
                     </Box>
                     <Box px={3}>
                         <UnstyledButton className="snipcart-checkout">
-                            <StyledIcon icon={faShoppingCart} />
+                            <StyledIcon icon={faShoppingCart} hero={hero} />
                             <CartItemsCountContainer className="snipcart-items-count" />
                         </UnstyledButton>
                     </Box>
                     <Box mr={3}>
                         <UnstyledButton className="snipcart-customer-signin">
-                            <StyledIcon icon={faUser} />
+                            <StyledIcon icon={faUser} hero={hero} />
                         </UnstyledButton>
                     </Box>
                 </Flex>
                 <Flex display={["flex", "none"]} mx={-3}>
                     <Box px={3}>
                         <UnstyledButton className="snipcart-checkout">
-                            <StyledIcon icon={faShoppingCart} />
+                            <StyledIcon icon={faShoppingCart} hero={hero} />
                             <CartItemsCountContainer className="snipcart-items-count" />
                         </UnstyledButton>
                     </Box>
                     <Box px={3}>
                         <UnstyledButton className="snipcart-customer-signin">
-                            <StyledIcon icon={faUser} />
+                            <StyledIcon icon={faUser} hero={hero} />
                         </UnstyledButton>
                     </Box>
                     <Box px={2}>
-                        <VerticalDivider />
+                        <VerticalDivider hero={hero} />
                     </Box>
                     <Box px={3}>
                         <StyledIcon
                             icon={faBars}
                             onClick={handleMobileMenuOpen}
+                            hero={hero}
                         />
                     </Box>
                 </Flex>

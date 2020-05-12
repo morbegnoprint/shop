@@ -10,10 +10,10 @@ export const RootSlider = styled(Slider)`
 
 export const Overlay = styled.div`
     position: absolute;
-    bottom: 0;
-    top: 0;
-    left: 0;
-    right: 0;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
     background: rgba(0, 0, 0, 0.7);
 `;
 
