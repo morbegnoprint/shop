@@ -54,6 +54,9 @@ const Product = ({ data }) => {
         },
     } = data;
 
+    const removeAdditionalPriceModifier = (value) =>
+        value.replace(/\[.*\]$/, "");
+
     const [attributes, setAttributes] = useState({});
     const [snipcartCustomAttributes, setSnipcartCustomAttributes] = useState(
         frontmatter.attributes.reduce((customFields, attribute, index) => {
@@ -140,9 +143,6 @@ const Product = ({ data }) => {
             }
         }
     }, []);
-
-    const removeAdditionalPriceModifier = (value) =>
-        value.replace(/\[.*\]$/, "");
 
     return (
         <Layout>
