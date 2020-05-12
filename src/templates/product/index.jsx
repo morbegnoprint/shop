@@ -56,7 +56,20 @@ const Product = ({ data }) => {
 
     const [attributes, setAttributes] = useState({});
     const [snipcartCustomAttributes, setSnipcartCustomAttributes] = useState(
-        {}
+        frontmatter.attributes.reduce((customFields, attribute, index) => {
+            customFields[`data-item-custom${index + 1}-name`] = attribute.name;
+            customFields[
+                `data-item-custom${index + 1}-options`
+            ] = attribute.options.join("|");
+            const value =
+                attributes[attribute.name] && attributes[attribute.name].value;
+            if (value) {
+                customFields[
+                    `data-item-custom${index + 1}-value`
+                ] = removeAdditionalPriceModifier(value);
+            }
+            return customFields;
+        }, {})
     );
     const [quantity, setQuantity] = useState("");
     const [buyable, setBuyable] = useState(false);
