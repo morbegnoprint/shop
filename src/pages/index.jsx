@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Seo } from "../components/seo";
 import { Layout } from "../components/layout";
 import { useStaticQuery, graphql } from "gatsby";
 import { Categories } from "../components/categories";
 import { Products } from "../components/products";
 import { Section } from "../components/section";
+import { useState } from "react";
+import { DiscountCampaigns } from "../components/discount-campaigns";
 
 const Index = () => {
     const { products, categories, discountCampaigns } = useStaticQuery(
@@ -64,13 +66,10 @@ const Index = () => {
                         node {
                             frontmatter {
                                 name
+                                description
                                 expireDate
                                 image {
-                                    childImageSharp {
-                                        fluid(quality: 90) {
-                                            ...GatsbyImageSharpFluid
-                                        }
-                                    }
+                                    publicURL
                                 }
                             }
                         }
@@ -80,11 +79,29 @@ const Index = () => {
         `
     );
 
-    console.log(discountCampaigns);
+    const [validDiscountCampaigns, setValidDiscountCampaigns] = useState([]);
+
+    useEffect(() => {
+        const now = new Date().getTime();
+        setValidDiscountCampaigns(
+            discountCampaigns.edges
+                .map((discountCampaign) => discountCampaign.node.frontmatter)
+                .filter((discountCampaign) => {
+                    return (
+                        new Date(discountCampaign.expireDate).getTime() > now
+                    );
+                })
+        );
+    }, [discountCampaigns]);
+
+    console.log(validDiscountCampaigns);
 
     return (
         <Layout>
             <Seo title="Home" />
+            {validDiscountCampaigns && validDiscountCampaigns.length > 0 && (
+                <DiscountCampaigns discountCampaigns={validDiscountCampaigns} />
+            )}
             <Section title="Sfoglia le categorie">
                 <Categories
                     categories={categories.edges.reduce((categories, edge) => {

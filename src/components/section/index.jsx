@@ -5,7 +5,7 @@ import { Breadcrumbs } from "../breadcrumbs";
 import { Title } from "./styled";
 
 export const Section = ({ title, breadcrumbs, children }) => (
-    <Flex my={4} justifyContent="center">
+    <Flex mt={4} mb={5} justifyContent="center">
         <Flex
             alignItems="center"
             flexDirection="column"
