@@ -42,7 +42,6 @@ export const pageQuery = graphql`
                             }
                         }
                         price
-                        currency
                     }
                 }
             }

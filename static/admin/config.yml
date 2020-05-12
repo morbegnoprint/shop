@@ -77,8 +77,3 @@ collections:
             widget: "number"
             min: 0
             step: 0.01
-          - name: "currency"
-            widget: "select"
-            options:
-                - label: "Euro"
-                  value: €

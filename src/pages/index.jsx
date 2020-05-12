@@ -29,7 +29,6 @@ const Index = () => {
                                     }
                                 }
                                 price
-                                currency
                             }
                         }
                     }

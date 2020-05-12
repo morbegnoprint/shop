@@ -11,7 +11,7 @@ import {
 import { Flex, Box } from "reflexbox";
 import { UndecoratedLink } from "../../undecorated-link";
 
-export const Product = ({ slug, name, image, price, currency }) => (
+export const Product = ({ slug, name, image, price }) => (
     <UndecoratedLink to={`/products/${slug}`}>
         <RootFlex flexDirection="column">
             <AbsoluteContainer>
@@ -35,7 +35,7 @@ export const Product = ({ slug, name, image, price, currency }) => (
                             color="#f07d02"
                             fontWeight={700}
                         >
-                            {price} {currency}
+                            {price} €
                         </Box>
                     </Flex>
                 </InfoContainer>

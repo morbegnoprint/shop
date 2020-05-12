@@ -12,5 +12,4 @@ category: Gadget
 type: product
 collection: products
 price: 15
-currency: €
 ---

@@ -13,5 +13,4 @@ category: Canotte
 type: product
 collection: products
 price: 10
-currency: €
 ---
