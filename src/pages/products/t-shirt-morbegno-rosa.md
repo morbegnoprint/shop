@@ -10,7 +10,7 @@ attributes:
       - S
       - M
       - L
-category: T-shirt
+category: Abbigliamento
 type: product
 collection: products
 price: 10
