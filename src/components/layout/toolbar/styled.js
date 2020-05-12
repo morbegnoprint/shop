@@ -26,6 +26,7 @@ export const UnstyledButton = styled.button`
     border: none;
     outline: none;
     background: transparent;
+    cursor: pointer;
 `;
 
 export const CartItemsCountContainer = styled.span`
