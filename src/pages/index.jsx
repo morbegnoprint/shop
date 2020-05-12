@@ -7,7 +7,7 @@ import { Products } from "../components/products";
 import { Section } from "../components/section";
 
 const Index = () => {
-    const { products, categories } = useStaticQuery(
+    const { products, categories, discountCampaigns } = useStaticQuery(
         graphql`
             query {
                 products: allMarkdownRemark(
@@ -55,9 +55,35 @@ const Index = () => {
                         }
                     }
                 }
+                discountCampaigns: allMarkdownRemark(
+                    limit: 3
+                    filter: {
+                        frontmatter: { type: { eq: "discount-campaign" } }
+                    }
+                ) {
+                    edges {
+                        node {
+                            fields {
+                                slug
+                            }
+                            frontmatter {
+                                name
+                                image {
+                                    childImageSharp {
+                                        fluid(quality: 90) {
+                                            ...GatsbyImageSharpFluid
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
             }
         `
     );
+
+    console.log(discountCampaigns);
 
     return (
         <Layout>
