@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import PropTypes from "prop-types";
 import {
     Container,
     StyledIcon,
@@ -17,7 +18,7 @@ import {
 import { Flex, Box } from "reflexbox";
 import { VerticalDivider } from "../../vertical-divider";
 
-export const Toolbar = () => {
+export const Toolbar = ({ heroEnabled }) => {
     const { logoImage } = useStaticQuery(graphql`
         query {
             logoImage: file(relativePath: { eq: "logo-mini.png" }) {
@@ -63,7 +64,7 @@ export const Toolbar = () => {
             <Container
                 alignItems="center"
                 justifyContent="space-between"
-                hero={hero}
+                hero={heroEnabled && hero}
             >
                 <Box>
                     <Link to="/">
@@ -82,44 +83,64 @@ export const Toolbar = () => {
                         <Item to="/categories">Categorie</Item>
                     </Box>
                     <Box px={2}>
-                        <VerticalDivider hero={hero} />
+                        <VerticalDivider hero={heroEnabled && hero} />
                     </Box>
                     <Box px={3}>
                         <UnstyledButton className="snipcart-checkout">
-                            <StyledIcon icon={faShoppingCart} hero={hero} />
+                            <StyledIcon
+                                icon={faShoppingCart}
+                                hero={heroEnabled && hero}
+                            />
                             <CartItemsCountContainer className="snipcart-items-count" />
                         </UnstyledButton>
                     </Box>
                     <Box mr={3}>
                         <UnstyledButton className="snipcart-customer-signin">
-                            <StyledIcon icon={faUser} hero={hero} />
+                            <StyledIcon
+                                icon={faUser}
+                                hero={heroEnabled && hero}
+                            />
                         </UnstyledButton>
                     </Box>
                 </Flex>
                 <Flex display={["flex", "none"]} mx={-3}>
                     <Box px={3}>
                         <UnstyledButton className="snipcart-checkout">
-                            <StyledIcon icon={faShoppingCart} hero={hero} />
+                            <StyledIcon
+                                icon={faShoppingCart}
+                                hero={heroEnabled && hero}
+                            />
                             <CartItemsCountContainer className="snipcart-items-count" />
                         </UnstyledButton>
                     </Box>
                     <Box px={3}>
                         <UnstyledButton className="snipcart-customer-signin">
-                            <StyledIcon icon={faUser} hero={hero} />
+                            <StyledIcon
+                                icon={faUser}
+                                hero={heroEnabled && hero}
+                            />
                         </UnstyledButton>
                     </Box>
                     <Box px={2}>
-                        <VerticalDivider hero={hero} />
+                        <VerticalDivider hero={heroEnabled && hero} />
                     </Box>
                     <Box px={3}>
                         <StyledIcon
                             icon={faBars}
                             onClick={handleMobileMenuOpen}
-                            hero={hero}
+                            hero={heroEnabled && hero}
                         />
                     </Box>
                 </Flex>
             </Container>
         </>
     );
+};
+
+Toolbar.propTypes = {
+    heroEnabled: PropTypes.bool,
+};
+
+Toolbar.defaultProps = {
+    heroEnabled: false,
 };

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useLayoutEffect } from "react";
 import { Seo } from "../components/seo";
 import { Layout } from "../components/layout";
 import { useStaticQuery, graphql } from "gatsby";
@@ -81,7 +81,7 @@ const Index = () => {
 
     const [validDiscountCampaigns, setValidDiscountCampaigns] = useState([]);
 
-    useEffect(() => {
+    useLayoutEffect(() => {
         const now = new Date().getTime();
         setValidDiscountCampaigns(
             discountCampaigns.edges
@@ -97,7 +97,11 @@ const Index = () => {
     console.log(validDiscountCampaigns);
 
     return (
-        <Layout>
+        <Layout
+            heroEnabled={
+                validDiscountCampaigns && validDiscountCampaigns.length > 0
+            }
+        >
             <Seo title="Home" />
             {validDiscountCampaigns && validDiscountCampaigns.length > 0 && (
                 <DiscountCampaigns discountCampaigns={validDiscountCampaigns} />

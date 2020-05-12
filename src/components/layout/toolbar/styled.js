@@ -1,4 +1,4 @@
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 import { MobileMenu } from "./mobile-menu";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Flex } from "reflexbox";
