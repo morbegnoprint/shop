@@ -32,6 +32,7 @@ export const pageQuery = graphql`
                     options
                 }
                 price
+                weight
                 category
             }
         }
@@ -257,6 +258,7 @@ const Product = ({ data }) => {
                                     data-item-name={frontmatter.name}
                                     data-item-quantity={quantity}
                                     data-item-categories={frontmatter.category}
+                                    data-item-weight={frontmatter.weight}
                                     disabled={!buyable}
                                 >
                                     Aggiungi al carrello
