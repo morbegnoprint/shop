@@ -14,4 +14,5 @@ category: Abbigliamento
 type: product
 collection: products
 price: 10
+weight: 50
 ---
