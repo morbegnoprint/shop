@@ -18,7 +18,7 @@ import {
 import { Flex, Box } from "reflexbox";
 import { VerticalDivider } from "../../vertical-divider";
 
-export const Toolbar = ({ heroEnabled }) => {
+export const Toolbar = () => {
     const { logoImage } = useStaticQuery(graphql`
         query {
             logoImage: file(relativePath: { eq: "logo-mini.png" }) {
@@ -31,21 +31,7 @@ export const Toolbar = ({ heroEnabled }) => {
         }
     `);
 
-    const [hero, setHero] = useState(
-        !(typeof window !== "undefined" && window.pageYOffset)
-    );
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-
-    useEffect(() => {
-        window.addEventListener("scroll", handleScroll);
-        return () => {
-            window.removeEventListener("scroll", handleScroll);
-        };
-    }, []);
-
-    const handleScroll = () => {
-        setHero(!window.pageYOffset);
-    };
 
     const handleMobileMenuOpen = () => {
         setMobileMenuOpen(true);
@@ -61,11 +47,7 @@ export const Toolbar = ({ heroEnabled }) => {
                 open={mobileMenuOpen}
                 onClose={handleMobileMenuClose}
             />
-            <Container
-                alignItems="center"
-                justifyContent="space-between"
-                hero={heroEnabled && hero}
-            >
+            <Container alignItems="center" justifyContent="space-between">
                 <Box>
                     <Link to="/">
                         <Image
@@ -83,64 +65,43 @@ export const Toolbar = ({ heroEnabled }) => {
                         <Item to="/categories">Categorie</Item>
                     </Box>
                     <Box px={2}>
-                        <VerticalDivider hero={heroEnabled && hero} />
+                        <VerticalDivider />
                     </Box>
                     <Box px={3}>
                         <UnstyledButton className="snipcart-checkout">
-                            <StyledIcon
-                                icon={faShoppingCart}
-                                hero={heroEnabled && hero}
-                            />
+                            <StyledIcon icon={faShoppingCart} />
                             <CartItemsCountContainer className="snipcart-items-count" />
                         </UnstyledButton>
                     </Box>
                     <Box mr={3}>
                         <UnstyledButton className="snipcart-customer-signin">
-                            <StyledIcon
-                                icon={faUser}
-                                hero={heroEnabled && hero}
-                            />
+                            <StyledIcon icon={faUser} />
                         </UnstyledButton>
                     </Box>
                 </Flex>
                 <Flex display={["flex", "none"]} mx={-3}>
                     <Box px={3}>
                         <UnstyledButton className="snipcart-checkout">
-                            <StyledIcon
-                                icon={faShoppingCart}
-                                hero={heroEnabled && hero}
-                            />
+                            <StyledIcon icon={faShoppingCart} />
                             <CartItemsCountContainer className="snipcart-items-count" />
                         </UnstyledButton>
                     </Box>
                     <Box px={3}>
                         <UnstyledButton className="snipcart-customer-signin">
-                            <StyledIcon
-                                icon={faUser}
-                                hero={heroEnabled && hero}
-                            />
+                            <StyledIcon icon={faUser} />
                         </UnstyledButton>
                     </Box>
                     <Box px={2}>
-                        <VerticalDivider hero={heroEnabled && hero} />
+                        <VerticalDivider />
                     </Box>
                     <Box px={3}>
                         <StyledIcon
                             icon={faBars}
                             onClick={handleMobileMenuOpen}
-                            hero={heroEnabled && hero}
                         />
                     </Box>
                 </Flex>
             </Container>
         </>
     );
-};
-
-Toolbar.propTypes = {
-    heroEnabled: PropTypes.bool,
-};
-
-Toolbar.defaultProps = {
-    heroEnabled: false,
 };

@@ -6,10 +6,7 @@ exports.createPages = async ({ actions, graphql }) => {
     const { createPage } = actions;
     const result = await graphql(`
         {
-            allMarkdownRemark(
-                limit: 1000
-                filter: { frontmatter: { type: { ne: "discount-campaign" } } }
-            ) {
+            allMarkdownRemark(limit: 1000) {
                 edges {
                     node {
                         fields {

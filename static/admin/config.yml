@@ -84,28 +84,3 @@ collections:
             widget: "number"
             min: 0
             step: 1
-    - name: "discount-campaigns"
-      identifier_field: "name"
-      label: "Campagne sconto"
-      label_singular: "campagna sconto"
-      folder: "src/content/discount-campaigns"
-      create: true
-      slug: "{{slug}}"
-      editor:
-          preview: false
-      fields:
-          - label: "Nome"
-            name: "name"
-            widget: "string"
-          - label: "Immagine"
-            name: "image"
-            widget: "image"
-          - label: "Descrizione"
-            name: "description"
-            widget: "markdown"
-          - name: "type"
-            widget: "hidden"
-            default: "discount-campaign"
-          - label: "Data scadenza"
-            name: "expireDate"
-            widget: "datetime"

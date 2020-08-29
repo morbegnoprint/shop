@@ -1,15 +1,14 @@
 import React from "react";
-import PropTypes from "prop-types";
 import { Toolbar } from "./toolbar";
 import { Main, ToolbarSpacer } from "./styled";
 import { Footer } from "./footer";
 import { Flex, Box } from "reflexbox";
 
-export const Layout = ({ heroEnabled, children }) => (
+export const Layout = ({ children }) => (
     <Flex flexDirection="column" minHeight="100vh">
-        {!heroEnabled && <ToolbarSpacer />}
+        <ToolbarSpacer />
         <Box>
-            <Toolbar heroEnabled={heroEnabled} />
+            <Toolbar />
         </Box>
         <Box flex="1">
             <Main>{children}</Main>
@@ -19,11 +18,3 @@ export const Layout = ({ heroEnabled, children }) => (
         </Box>
     </Flex>
 );
-
-Layout.propTypes = {
-    heroEnabled: PropTypes.bool,
-};
-
-Layout.defaultProps = {
-    heroEnabled: false,
-};

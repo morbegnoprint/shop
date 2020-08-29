@@ -1,15 +1,13 @@
-import React, { useLayoutEffect } from "react";
+import React from "react";
 import { Seo } from "../components/seo";
 import { Layout } from "../components/layout";
 import { useStaticQuery, graphql } from "gatsby";
 import { Categories } from "../components/categories";
 import { Products } from "../components/products";
 import { Section } from "../components/section";
-import { useState } from "react";
-import { DiscountCampaigns } from "../components/discount-campaigns";
 
 const Index = () => {
-    const { products, categories, discountCampaigns } = useStaticQuery(
+    const { products, categories } = useStaticQuery(
         graphql`
             query {
                 products: allMarkdownRemark(
@@ -57,55 +55,13 @@ const Index = () => {
                         }
                     }
                 }
-                discountCampaigns: allMarkdownRemark(
-                    filter: {
-                        frontmatter: { type: { eq: "discount-campaign" } }
-                    }
-                ) {
-                    edges {
-                        node {
-                            frontmatter {
-                                name
-                                description
-                                expireDate
-                                image {
-                                    publicURL
-                                }
-                            }
-                        }
-                    }
-                }
             }
         `
     );
 
-    const [validDiscountCampaigns, setValidDiscountCampaigns] = useState([]);
-
-    useLayoutEffect(() => {
-        const now = new Date().getTime();
-        setValidDiscountCampaigns(
-            discountCampaigns.edges
-                .map((discountCampaign) => discountCampaign.node.frontmatter)
-                .filter((discountCampaign) => {
-                    return (
-                        new Date(discountCampaign.expireDate).getTime() > now
-                    );
-                })
-        );
-    }, [discountCampaigns]);
-
-    console.log(validDiscountCampaigns);
-
     return (
-        <Layout
-            heroEnabled={
-                validDiscountCampaigns && validDiscountCampaigns.length > 0
-            }
-        >
+        <Layout>
             <Seo title="Home" />
-            {validDiscountCampaigns && validDiscountCampaigns.length > 0 && (
-                <DiscountCampaigns discountCampaigns={validDiscountCampaigns} />
-            )}
             <Section title="Sfoglia le categorie">
                 <Categories
                     categories={categories.edges.reduce((categories, edge) => {
