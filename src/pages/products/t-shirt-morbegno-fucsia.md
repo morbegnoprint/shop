@@ -1,17 +1,24 @@
 ---
-name: T shirt Morbegno fucsia
-image: /images/uploads/photo_2020-05-10-22.17.25.jpeg
-description: Porta Morbegno e la Valtellina sempre con te grazie a questa
-  t-shirt. Colore fucsia, 100% cotone.
+name: "T-shirt donna palloncino "
+image: /images/uploads/fotowebpalloncino.jpg
+description: >-
+  T-shirt donna manica corta, girocollo, morbida al tatto, superfici e liscia e
+  regolare, cuciture del collo e
+
+  delle spalle rinforzate. 100% cotone organico. 
+
+  120 gr, classic fit.
 attributes:
   - name: Taglia
     options:
+      - XS
       - S
       - M
       - L
+      - XL
 category: Abbigliamento
 type: product
 collection: products
-price: 12
+price: 25
 weight: 150
 ---
