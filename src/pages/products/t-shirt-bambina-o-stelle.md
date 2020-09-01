@@ -16,6 +16,6 @@ attributes:
 category: Abbigliamento
 type: product
 collection: products
-price: 14
+price: 18
 weight: 150
 ---
