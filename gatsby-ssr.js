@@ -6,7 +6,7 @@ export const onRenderBody = ({ setPostBodyComponents }) => {
             key="snipcart-container"
             hidden
             id="snipcart"
-            data-api-key="MTcyMDQxNzUtY2Q4ZS00MmNhLTk2MTEtZjY3MTM1MjFjZDRkNjM3MjQwMTAyODQ4MTE2ODE3"
+            data-api-key="MjkwNGYzMjktNWY1OC00MGU0LTk4YmUtODgxZGRlZGI1YjE1NjM3MjQwMTAyODQ4MTE2ODE3"
             data-currency="EUR"
         />,
         <script
