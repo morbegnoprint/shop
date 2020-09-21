@@ -52,9 +52,6 @@ const Categories = () => {
                     }, [])}
                     truncatedText={
                         <Flex flexDirection="column">
-                            <Box mb={3} fontSize={32}>
-                                <FontAwesomeIcon icon={faExclamationTriangle} />
-                            </Box>
                             <Box>Non c'è più nulla qui</Box>
                         </Flex>
                     }
