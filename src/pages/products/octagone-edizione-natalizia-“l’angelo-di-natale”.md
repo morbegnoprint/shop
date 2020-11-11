@@ -8,5 +8,5 @@ category: Giochi da tavolo
 type: product
 collection: products
 price: 30
-weight: 70
+weight: 80
 ---
